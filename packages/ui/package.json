@@ -1,0 +1,39 @@
+{
+  "name": "@yuva-devlab/ui",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint src/",
+    "storybook": "pnpm --filter @yuva-devlab/docs storybook",
+    "clean:build": "rm -rf dist",
+    "clean:node_modules": "rm -rf node_modules",
+    "clean:turbo": "rm -rf .turbo",
+    "clean": "pnpm run clean:build && pnpm run clean:node_modules && pnpm run clean:turbo"
+  },
+  "dependencies": {
+    "@stylexjs/stylex": "^0.9.3",
+    "@yuva-devlab/primitives": "workspace:*",
+    "@yuva-devlab/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.2.6",
+    "@vitest/expect": "^4.0.13",
+    "@yuva-devlab/eslint-config": "workspace:*",
+    "@yuva-devlab/typescript-config": "workspace:*",
+    "jsdom": "^27.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.13"
+  },
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}

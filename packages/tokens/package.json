@@ -1,0 +1,23 @@
+{
+  "name": "@yuva-devlab/tokens",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint src/",
+    "clean:build": "rm -rf dist",
+    "clean:node_modules": "rm -rf node_modules",
+    "clean:turbo": "rm -rf .turbo",
+    "clean": "pnpm run clean:build && pnpm run clean:node_modules && pnpm run clean:turbo"
+  },
+  "devDependencies": {
+    "@yuva-devlab/typescript-config": "workspace:*",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@stylexjs/stylex": "^0.9.3"
+  }
+}

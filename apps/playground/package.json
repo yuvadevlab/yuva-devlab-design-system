@@ -1,0 +1,29 @@
+{
+  "name": "playground",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src/",
+    "clean:build": "rm -rf dist",
+    "clean:node_modules": "rm -rf node_modules",
+    "clean:turbo": "rm -rf .turbo",
+    "clean": "pnpm run clean:build && pnpm run clean:node_modules && pnpm run clean:turbo"
+  },
+  "dependencies": {
+    "@yuva-devlab/tokens": "workspace:*",
+    "@yuva-devlab/ui": "workspace:*",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.6",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react-swc": "^4.2.2",
+    "@yuva-devlab/typescript-config": "workspace:*",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.4"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/cli" },
+    { "path": "./packages/primitives" },
+    { "path": "./packages/tokens" },
+    { "path": "./packages/ui" },
+    { "path": "./apps/playground" }
+  ]
+}

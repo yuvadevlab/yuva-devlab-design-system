@@ -1,0 +1,34 @@
+{
+  "name": "yuva-devlab-workspace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo run build",
+    "build:packages": "turbo run build --filter ./packages/*",
+    "build:apps": "turbo run build --filter ./apps/*",
+    "build:cli": "turbo run build --filter ./packages/cli",
+    "build:ui": "turbo run build --filter ./packages/ui",
+    "build:tokens": "turbo run build --filter ./packages/tokens",
+    "build:primitives": "turbo run build --filter ./packages/primitives",
+    "build:docs": "turbo run build --filter ./packages/docs",
+    "build:playground": "turbo run build --filter ./apps/playground",
+    "clean": "turbo run clean",
+    "dev": "turbo run dev",
+    "dev:playground": "pnpm --filter playground dev",
+    "dev:docs": "pnpm --filter docs dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "@yuva-devlab/cli": "workspace:*",
+    "prettier": "^3.6.2",
+    "turbo": "^2.6.1",
+    "typescript": "^5.9.3"
+  }
+}
