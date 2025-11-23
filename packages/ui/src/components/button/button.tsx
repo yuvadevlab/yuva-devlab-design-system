@@ -1,10 +1,8 @@
-import * as stylex from "@stylexjs/stylex";
 import { ButtonPrimitive } from "@yuva-devlab/primitives";
+import clsx from "clsx";
 import React from "react";
 
-import { cn } from "../../utils";
-
-import { buttonStyles } from "./button.styles";
+import * as styles from "./button.styles.css";
 import type { ButtonProps } from "./button.types";
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -21,27 +19,20 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    const stylexProps = stylex.props(
-      buttonStyles.base,
-      size === "small" && buttonStyles.size_small,
-      size === "middle" && buttonStyles.size_middle,
-      size === "large" && buttonStyles.size_large,
-      variant === "default" && buttonStyles.type_default,
-      variant === "primary" && buttonStyles.type_primary,
-      variant === "ghost" && buttonStyles.type_ghost,
-      variant === "link" && buttonStyles.type_link,
-      danger && buttonStyles.danger,
-      block && buttonStyles.block,
-      (disabled || loading) && buttonStyles.disabled,
-    );
-
     return (
       <ButtonPrimitive
         ref={ref}
         loading={loading}
         disabled={disabled}
-        className={cn(stylexProps.className, className)}
-        style={stylexProps.style}
+        className={clsx(
+          styles.base,
+          styles.size[size],
+          styles.variant[variant],
+          danger && styles.danger,
+          block && styles.block,
+          (disabled || loading) && styles.disabled,
+          className,
+        )}
         {...rest}
       />
     );

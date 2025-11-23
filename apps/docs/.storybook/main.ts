@@ -1,6 +1,8 @@
-import type { StorybookConfig } from "@storybook/react-vite";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+
+import type { StorybookConfig } from "@storybook/react-vite";
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,21 +17,22 @@ const config: StorybookConfig = {
     options: {},
   },
   viteFinal: async (config) => {
-    // Ensure resolve and alias objects exist
-    config.resolve = config.resolve || {};
-    config.resolve.alias = config.resolve.alias || {};
-
-    // Add workspace package aliases
-    const aliases = {
-      "@yuva-devlab/ui": path.resolve(workspaceRoot, "ui/src"),
-      "@yuva-devlab/primitives": path.resolve(workspaceRoot, "primitives/src"),
-      "@yuva-devlab/tokens": path.resolve(workspaceRoot, "tokens/src"),
+    return {
+      ...config,
+      plugins: [...(config.plugins || []), vanillaExtractPlugin()],
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve?.alias,
+          "@yuva-devlab/ui": path.resolve(workspaceRoot, "ui/src"),
+          "@yuva-devlab/primitives": path.resolve(
+            workspaceRoot,
+            "primitives/src",
+          ),
+          "@yuva-devlab/tokens": path.resolve(workspaceRoot, "tokens/src"),
+        },
+      },
     };
-
-    // Merge aliases
-    Object.assign(config.resolve.alias, aliases);
-
-    return config;
   },
 };
 

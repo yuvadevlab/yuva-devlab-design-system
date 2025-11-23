@@ -27,6 +27,7 @@
     "@storybook/react-vite": "^10.0.8",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
+    "@vanilla-extract/vite-plugin": "^5.1.1",
     "@yuva-devlab/eslint-config": "workspace:*",
     "@yuva-devlab/prettier-config": "workspace:*",
     "@yuva-devlab/typescript-config": "workspace:*",

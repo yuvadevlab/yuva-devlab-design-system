@@ -1,5 +1,4 @@
-import type { Preview } from "@storybook/react";
-import React from "react";
+import type { Decorator, Preview } from "@storybook/react";
 import { ThemeProvider, ConfigProvider } from "@yuva-devlab/ui";
 
 const preview: Preview = {
@@ -20,7 +19,7 @@ const preview: Preview = {
         </ConfigProvider>
       </ThemeProvider>
     ),
-  ],
+  ] as Decorator[],
   parameters: {
     controls: {
       matchers: {

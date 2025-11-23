@@ -6,7 +6,7 @@
     "yuva": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "vite build",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "format": "prettier --write .",
@@ -28,6 +28,6 @@
     "@yuva-devlab/eslint-config": "workspace:*",
     "@yuva-devlab/prettier-config": "workspace:*",
     "@yuva-devlab/typescript-config": "workspace:*",
-    "tsup": "^8.5.1"
+    "vite": "^7.2.4"
   }
 }
