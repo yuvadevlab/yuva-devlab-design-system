@@ -1,6 +1,7 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
 import path from "node:path";
+
+import react from "@vitejs/plugin-react-swc";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
@@ -9,11 +10,11 @@ export default defineConfig({
       "@yuva-devlab/ui": path.resolve(__dirname, "../../packages/ui/src"),
       "@yuva-devlab/tokens": path.resolve(
         __dirname,
-        "../../packages/tokens/src"
+        "../../packages/tokens/src",
       ),
       "@yuva-devlab/primitives": path.resolve(
         __dirname,
-        "../../packages/primitives/src"
+        "../../packages/primitives/src",
       ),
     },
   },

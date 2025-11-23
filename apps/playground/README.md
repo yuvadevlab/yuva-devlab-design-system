@@ -1,6 +1,7 @@
 # 🧪 @yuva-devlab/playground
 
-A lightweight React + Vite app used to test the UI library in a _real app environment_.
+A lightweight React + Vite app used to test the UI library in a _real app
+environment_.
 
 This is not documentation — it’s for live development testing.
 

@@ -8,4 +8,11 @@ export default defineConfig({
   clean: true,
   treeshake: true,
   tsconfig: "tsconfig.json",
+  external: [
+    "react",
+    "react-dom",
+    "@stylexjs/stylex",
+    "@yuva-devlab/tokens",
+    "@yuva-devlab/primitives",
+  ],
 });

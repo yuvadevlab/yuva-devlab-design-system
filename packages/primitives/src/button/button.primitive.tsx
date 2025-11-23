@@ -12,7 +12,13 @@ export const ButtonPrimitive = React.forwardRef<
   ButtonPrimitiveProps
 >(({ asChild, loading, ...props }, ref) => {
   const Comp = asChild ? Slot : "button";
-  return <Comp ref={ref} {...props} disabled={loading || props.disabled} />;
+  return (
+    <Comp
+      ref={ref}
+      {...props}
+      disabled={loading || props.disabled}
+    />
+  );
 });
 
 ButtonPrimitive.displayName = "ButtonPrimitive";

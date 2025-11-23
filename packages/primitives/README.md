@@ -36,7 +36,11 @@ export const ButtonPrimitive = React.forwardRef<
   ButtonPrimitiveProps
 >(({ loading, disabled, children, ...rest }, ref) => {
   return (
-    <button ref={ref} disabled={loading || disabled} {...rest}>
+    <button
+      ref={ref}
+      disabled={loading || disabled}
+      {...rest}
+    >
       {children}
     </button>
   );
