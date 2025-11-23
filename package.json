@@ -1,35 +1,41 @@
 {
   "name": "yuva-devlab-workspace",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "build": "turbo run build",
     "build:packages": "turbo run build --filter ./packages/*",
     "build:apps": "turbo run build --filter ./apps/*",
-    "build:cli": "turbo run build --filter ./packages/cli",
-    "build:ui": "turbo run build --filter ./packages/ui",
-    "build:tokens": "turbo run build --filter ./packages/tokens",
-    "build:primitives": "turbo run build --filter ./packages/primitives",
-    "build:docs": "turbo run build --filter ./packages/docs",
-    "build:playground": "turbo run build --filter ./apps/playground",
-    "clean": "turbo run clean",
     "dev": "turbo run dev",
-    "dev:playground": "pnpm --filter playground dev",
-    "dev:docs": "pnpm --filter docs dev",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
-    "test": "turbo run test"
+    "format": "turbo run format",
+    "format:check": "turbo run format:check",
+    "type-check": "turbo run type-check",
+    "test": "turbo run test",
+    "clean": "turbo run clean",
+    "pre-push": "pnpm run type-check && pnpm run lint && pnpm run build",
+    "validate": "pnpm run format:check && pnpm run lint && pnpm run type-check && pnpm run build",
+    "fix": "pnpm run format && pnpm run lint:fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@yuva-devlab/cli": "workspace:*",
     "eslint": "^9.39.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.6.2",
     "turbo": "^2.6.1",
     "typescript": "^5.9.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix --max-warnings=0",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml,css,scss}": [
+      "prettier --write"
+    ]
   }
 }
