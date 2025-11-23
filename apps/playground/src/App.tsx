@@ -1,6 +1,6 @@
 import { Button, ConfigProvider, ThemeProvider } from "@yuva-devlab/ui";
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <ThemeProvider>
       <ConfigProvider

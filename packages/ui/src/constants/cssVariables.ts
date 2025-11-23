@@ -3,8 +3,12 @@ import type { YdThemeTokensOverrides } from "../theme/types";
 /**
  * Apply token values as CSS variables on documentElement.
  */
-export function applyThemeToDocument(tokens: Required<YdThemeTokensOverrides>) {
-  if (typeof document === "undefined") return;
+export const applyThemeToDocument = (
+  tokens: Required<YdThemeTokensOverrides>,
+): void => {
+  if (typeof document === "undefined") {
+    return;
+  }
 
   const root = document.documentElement;
 
@@ -12,35 +16,35 @@ export function applyThemeToDocument(tokens: Required<YdThemeTokensOverrides>) {
 
   root.style.setProperty(
     "--yd-color-accent-primary",
-    color.accentPrimary || null
+    color.accentPrimary || null,
   );
   root.style.setProperty(
     "--yd-color-accent-primary-hover",
-    color.accentPrimaryHover || null
+    color.accentPrimaryHover || null,
   );
   root.style.setProperty(
     "--yd-color-accent-danger",
-    color.accentDanger || null
+    color.accentDanger || null,
   );
   root.style.setProperty(
     "--yd-color-accent-danger-hover",
-    color.accentDangerHover || null
+    color.accentDangerHover || null,
   );
 
   root.style.setProperty("--yd-color-text-primary", color.textPrimary || null);
   root.style.setProperty(
     "--yd-color-text-on-primary",
-    color.textOnPrimary || null
+    color.textOnPrimary || null,
   );
   root.style.setProperty("--yd-color-text-muted", color.textMuted || null);
 
   root.style.setProperty(
     "--yd-color-border-subtle",
-    color.borderSubtle || null
+    color.borderSubtle || null,
   );
   root.style.setProperty(
     "--yd-color-border-strong",
-    color.borderStrong || null
+    color.borderStrong || null,
   );
 
   root.style.setProperty("--yd-color-bg-button", color.bgButton || null);
@@ -51,4 +55,4 @@ export function applyThemeToDocument(tokens: Required<YdThemeTokensOverrides>) {
   root.style.setProperty("--yd-space-md", spacing.md || null);
   root.style.setProperty("--yd-space-lg", spacing.lg || null);
   root.style.setProperty("--yd-space-xl", spacing.xl || null);
-}
+};

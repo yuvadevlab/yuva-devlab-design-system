@@ -6,6 +6,8 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
+  treeshake: true,
+  tsconfig: "tsconfig.json",
   external: [
     "react",
     "react-dom",

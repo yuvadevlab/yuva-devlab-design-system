@@ -1,5 +1,5 @@
-import React from "react";
 import { Slot } from "@radix-ui/react-slot";
+import React from "react";
 
 export interface ButtonPrimitiveProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

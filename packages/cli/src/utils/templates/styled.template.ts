@@ -1,6 +1,6 @@
 import { indexTemplate } from "./index.template";
 
-const styledComponentTemplate = (pascal: string, kebab: string) => {
+const styledComponentTemplate = (pascal: string, kebab: string): string => {
   return `
 import React from "react";
 import * as stylex from "@stylexjs/stylex";
@@ -23,7 +23,7 @@ export const ${pascal}: React.FC<${pascal}Props> = ({
 `;
 };
 
-const styledTypesTemplate = (pascal: string) => {
+const styledTypesTemplate = (pascal: string): string => {
   return `
 import type { ${pascal}PrimitiveProps } from "@yuva-devlab/primitives";
 
@@ -33,7 +33,7 @@ export interface ${pascal}Props extends ${pascal}PrimitiveProps {
 `;
 };
 
-const styledStylesTemplate = (pascal: string) => {
+const styledStylesTemplate = (pascal: string): string => {
   return `
 import * as stylex from "@stylexjs/stylex";
 import { colors, spacing } from "@yuva-devlab/tokens";
@@ -57,7 +57,7 @@ export const ${pascal}Styles = stylex.create({
 `;
 };
 
-export const styledTestTemplate = (pascal: string, kebab: string) => {
+export const styledTestTemplate = (pascal: string, kebab: string): string => {
   return `
 import React from "react";
 import { render } from "@testing-library/react";
@@ -71,7 +71,10 @@ describe("${pascal}", () => {
 `;
 };
 
-export const styledTemplates = (pascal: string, kebab: string) => {
+export const styledTemplates = (
+  pascal: string,
+  kebab: string,
+): Record<string, string> => {
   return {
     component: styledComponentTemplate(pascal, kebab),
     types: styledTypesTemplate(pascal),

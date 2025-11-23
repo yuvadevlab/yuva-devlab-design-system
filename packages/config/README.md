@@ -5,7 +5,6 @@ Shared configuration packages used across the monorepo.
 Includes:
 
 - **@yuva-devlab/typescript-config**
-- **@yuva-devlab/eslint-config**
 
 ---
 

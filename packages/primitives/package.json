@@ -1,27 +1,29 @@
 {
   "name": "@yuva-devlab/primitives",
   "version": "0.0.0",
+  "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsup",
-    "lint": "eslint src/",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "clean:build": "rm -rf dist",
     "clean:node_modules": "rm -rf node_modules",
     "clean:turbo": "rm -rf .turbo",
     "clean": "pnpm run clean:build && pnpm run clean:node_modules && pnpm run clean:turbo"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "^1.0.0"
+    "@radix-ui/react-slot": "^1.2.4"
   },
   "devDependencies": {
     "@types/react": "^19.2.6",
     "@yuva-devlab/eslint-config": "workspace:*",
+    "@yuva-devlab/prettier-config": "workspace:*",
     "@yuva-devlab/typescript-config": "workspace:*",
     "react": "^19.2.0",
-    "tsup": "^8.5.1",
-    "typescript": "^5.9.3"
+    "tsup": "^8.5.1"
   },
   "peerDependencies": {
     "react": "^19.2.0"

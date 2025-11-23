@@ -1,17 +1,19 @@
+import fs from "node:fs";
+import path from "node:path";
+
+import chalk from "chalk";
 import { Command } from "commander";
 import prompts from "prompts";
-import chalk from "chalk";
-import path from "node:path";
-import fs from "node:fs";
+
 import { findRepoRoot } from "../utils/fs";
-import { toKebabCase, toPascalCase } from "../utils/strings";
 import { scaffoldPrimitive, scaffoldStyledComponent } from "../utils/helpers";
+import { toKebabCase, toPascalCase } from "../utils/strings";
 
 interface CreateComponentOptions {
   kind?: "component" | "primitive";
 }
 
-export function registerCreateComponentCommand(program: Command) {
+export const registerCreateComponentCommand = (program: Command): void => {
   program
     .command("component")
     .description("Generate a new UI component in packages/ui")
@@ -19,7 +21,7 @@ export function registerCreateComponentCommand(program: Command) {
     .option(
       "-k, --kind <kind>",
       "Kind of artifact: component | primitive",
-      "component"
+      "component",
     )
     .action(
       async (nameArg: string | undefined, options: CreateComponentOptions) => {
@@ -66,8 +68,8 @@ export function registerCreateComponentCommand(program: Command) {
           if (!fs.existsSync(uiRoot)) {
             console.error(
               chalk.red(
-                `Could not find UI source at ${uiRoot}. Are you in the right repo?`
-              )
+                `Could not find UI source at ${uiRoot}. Are you in the right repo?`,
+              ),
             );
             process.exit(1);
           }
@@ -81,6 +83,6 @@ export function registerCreateComponentCommand(program: Command) {
           console.error(chalk.red((err as Error).message));
           process.exit(1);
         }
-      }
+      },
     );
-}
+};

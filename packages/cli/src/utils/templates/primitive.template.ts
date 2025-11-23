@@ -1,6 +1,6 @@
 import { indexTemplate } from "./index.template";
 
-const primitiveComponentTemplate = (pascal: string) => {
+const primitiveComponentTemplate = (pascal: string): string => {
   return `
 import React from "react";
 
@@ -27,7 +27,7 @@ ${pascal}Primitive.displayName = "${pascal}Primitive";
 `;
 };
 
-export const primitiveTemplates = (pascal: string) => {
+export const primitiveTemplates = (pascal: string): Record<string, string> => {
   return {
     component: primitiveComponentTemplate(pascal),
     index: indexTemplate(pascal),

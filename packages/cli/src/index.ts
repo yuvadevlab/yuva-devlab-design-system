@@ -1,4 +1,5 @@
 import { Command } from "commander";
+
 import { registerCreateComponentCommand } from "./commands/create-component";
 
 const program = new Command();

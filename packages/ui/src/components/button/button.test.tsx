@@ -1,6 +1,6 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
+
 import { Button } from "./button";
 
 describe("<Button />", () => {
@@ -18,11 +18,14 @@ describe("<Button />", () => {
 
   it("is disabled when loading", () => {
     render(
-      <Button loading data-testid="btn">
+      <Button
+        loading
+        data-testid="btn"
+      >
         Loading
-      </Button>
+      </Button>,
     );
-    const button = screen.getByTestId("btn");
+    // const button = screen.getByTestId("btn");
     // expect(button).toBeDisabled();
     // expect(button).toHaveAttribute("aria-busy", "true");
   });

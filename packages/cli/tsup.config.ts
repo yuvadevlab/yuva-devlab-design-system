@@ -6,6 +6,8 @@ export default defineConfig({
   target: "node18",
   sourcemap: true,
   clean: true,
+  treeshake: true,
+  tsconfig: "tsconfig.json",
   dts: false,
   shims: false,
   outDir: "dist",

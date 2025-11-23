@@ -1,12 +1,14 @@
 {
   "name": "docs",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
-    "lint": "eslint src/",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "clean:build": "rm -rf dist",
     "clean:node_modules": "rm -rf node_modules",
     "clean:turbo": "rm -rf .turbo",
@@ -25,9 +27,10 @@
     "@storybook/react-vite": "^10.0.8",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
+    "@yuva-devlab/eslint-config": "workspace:*",
+    "@yuva-devlab/prettier-config": "workspace:*",
     "@yuva-devlab/typescript-config": "workspace:*",
     "storybook": "^10.0.8",
-    "typescript": "^5.9.3",
     "vite": "^7.2.4"
   }
 }

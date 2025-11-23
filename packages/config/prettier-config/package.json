@@ -1,0 +1,36 @@
+{
+  "name": "@yuva-devlab/prettier-config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared Prettier configuration",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint src",
+    "clean:build": "rm -rf dist",
+    "clean:node_modules": "rm -rf node_modules",
+    "clean:turbo": "rm -rf .turbo",
+    "clean": "pnpm run clean:build && pnpm run clean:node_modules && pnpm run clean:turbo"
+  },
+  "devDependencies": {
+    "@yuva-devlab/eslint-config": "workspace:*",
+    "@yuva-devlab/typescript-config": "workspace:*",
+    "prettier": "^3.6.2",
+    "tsup": "^8.5.1"
+  },
+  "peerDependencies": {
+    "prettier": ">=3.0.0"
+  }
+}

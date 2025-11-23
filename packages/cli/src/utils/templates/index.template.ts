@@ -1,4 +1,4 @@
-export const indexTemplate = (pascal: string) => {
+export const indexTemplate = (pascal: string): string => {
   return `
 export * from "./${pascal}.primitive";
 `;

@@ -1,13 +1,15 @@
 import path from "node:path";
-import { ensureDirExists, writeFileIfNotExists } from "../fs";
+
 import chalk from "chalk";
+
+import { ensureDirExists, writeFileIfNotExists } from "../fs";
 import { styledTemplates } from "../templates";
 
 export const scaffoldStyledComponent = (
   uiRoot: string,
   kebab: string,
-  pascal: string
-) => {
+  pascal: string,
+): void => {
   const componentDir = path.join(uiRoot, "components", kebab);
   const templates = styledTemplates(pascal, kebab);
   ensureDirExists(componentDir);
@@ -28,9 +30,10 @@ export const scaffoldStyledComponent = (
 
   writeFileIfNotExists(testFile, templates.test);
 
+  // eslint-disable-next-line no-console
   console.log(
     `✅ Created styled component ${chalk.cyan(pascal)} in ${chalk.gray(
-      `packages/ui/src/components/${kebab}`
-    )}`
+      `packages/ui/src/components/${kebab}`,
+    )}`,
   );
 };

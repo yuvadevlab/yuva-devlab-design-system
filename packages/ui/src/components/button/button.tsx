@@ -1,9 +1,11 @@
-import React from "react";
 import * as stylex from "@stylexjs/stylex";
 import { ButtonPrimitive } from "@yuva-devlab/primitives";
+import React from "react";
+
+import { cn } from "../../utils";
+
 import { buttonStyles } from "./button.styles";
 import type { ButtonProps } from "./button.types";
-import { cn } from "../../utils";
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -17,7 +19,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loading,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const stylexProps = stylex.props(
       buttonStyles.base,
@@ -30,7 +32,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       variant === "link" && buttonStyles.type_link,
       danger && buttonStyles.danger,
       block && buttonStyles.block,
-      (disabled || loading) && buttonStyles.disabled
+      (disabled || loading) && buttonStyles.disabled,
     );
 
     return (
@@ -43,7 +45,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
       />
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

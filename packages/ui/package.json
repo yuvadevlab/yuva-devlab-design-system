@@ -1,12 +1,14 @@
 {
   "name": "@yuva-devlab/ui",
   "version": "0.0.0",
+  "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsup",
-    "lint": "eslint src/",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "storybook": "pnpm --filter @yuva-devlab/docs storybook",
     "clean:build": "rm -rf dist",
     "clean:node_modules": "rm -rf node_modules",
@@ -24,12 +26,12 @@
     "@types/react": "^19.2.6",
     "@vitest/expect": "^4.0.13",
     "@yuva-devlab/eslint-config": "workspace:*",
+    "@yuva-devlab/prettier-config": "workspace:*",
     "@yuva-devlab/typescript-config": "workspace:*",
     "jsdom": "^27.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tsup": "^8.5.1",
-    "typescript": "^5.9.3",
     "vitest": "^4.0.13"
   },
   "peerDependencies": {

@@ -1,12 +1,14 @@
 {
   "name": "@yuva-devlab/cli",
   "version": "0.0.0",
+  "type": "module",
   "bin": {
     "yuva": "./dist/index.js"
   },
   "scripts": {
     "build": "tsup",
-    "lint": "eslint src/",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "clean:build": "rm -rf dist",
     "clean:node_modules": "rm -rf node_modules",
     "clean:turbo": "rm -rf .turbo",
@@ -20,8 +22,8 @@
   "devDependencies": {
     "@types/node": "^24.10.1",
     "@types/prompts": "^2.4.9",
+    "@yuva-devlab/eslint-config": "workspace:*",
     "@yuva-devlab/typescript-config": "workspace:*",
-    "tsup": "^8.5.1",
-    "typescript": "^5.9.3"
+    "tsup": "^8.5.1"
   }
 }

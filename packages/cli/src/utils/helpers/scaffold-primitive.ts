@@ -1,13 +1,15 @@
 import path from "node:path";
-import { ensureDirExists, writeFileIfNotExists } from "../fs";
+
 import chalk from "chalk";
+
+import { ensureDirExists, writeFileIfNotExists } from "../fs";
 import { primitiveTemplates } from "../templates";
 
 export const scaffoldPrimitive = (
   uiRoot: string,
   kebab: string,
-  pascal: string
-) => {
+  pascal: string,
+): void => {
   const primitiveDir = path.join(uiRoot, kebab);
   const templates = primitiveTemplates(pascal);
   ensureDirExists(primitiveDir);
@@ -19,9 +21,10 @@ export const scaffoldPrimitive = (
 
   writeFileIfNotExists(indexFile, templates.index);
 
+  // eslint-disable-next-line no-console
   console.log(
     `✅ Created primitive ${chalk.cyan(
-      `${pascal}Primitive`
-    )} in ${chalk.gray(`packages/primitives/src/${kebab}`)}`
+      `${pascal}Primitive`,
+    )} in ${chalk.gray(`packages/primitives/src/${kebab}`)}`,
   );
 };

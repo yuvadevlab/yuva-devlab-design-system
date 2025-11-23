@@ -5,16 +5,18 @@ import React, {
   useMemo,
   useState,
 } from "react";
+
+import { applyThemeToDocument } from "../constants/cssVariables";
+import {
+  defaultLightTokens,
+  defaultDarkTokens,
+} from "../constants/defaultTheme";
+
 import type {
   YdThemeConfig,
   YdThemeMode,
   YdThemeTokensOverrides,
 } from "./types";
-import {
-  defaultLightTokens,
-  defaultDarkTokens,
-} from "../constants/defaultTheme";
-import { applyThemeToDocument } from "../constants/cssVariables";
 
 interface ThemeContextValue {
   mode: YdThemeMode;
@@ -28,7 +30,7 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 const mergeTokens = (
   base: Required<YdThemeTokensOverrides>,
-  overrides?: YdThemeTokensOverrides
+  overrides?: YdThemeTokensOverrides,
 ): Required<YdThemeTokensOverrides> => {
   return {
     color: { ...base.color, ...(overrides?.color || {}) },
@@ -37,8 +39,12 @@ const mergeTokens = (
 };
 
 const resolveMode = (mode: YdThemeMode): "light" | "dark" => {
-  if (mode !== "system") return mode;
-  if (typeof window === "undefined") return "light";
+  if (mode !== "system") {
+    return mode;
+  }
+  if (typeof window === "undefined") {
+    return "light";
+  }
 
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   return prefersDark ? "dark" : "light";
@@ -49,7 +55,7 @@ export const ThemeProvider: React.FC<
 > = ({ config, children }) => {
   const [mode, setMode] = useState<YdThemeMode>(config?.mode || "system");
   const [overrides, setOverrides] = useState<YdThemeTokensOverrides>(
-    config?.tokens || {}
+    config?.tokens || {},
   );
 
   const resolvedMode = resolveMode(mode);
@@ -58,7 +64,7 @@ export const ThemeProvider: React.FC<
 
   const mergedTokens = useMemo(
     () => mergeTokens(baseTokens, overrides),
-    [baseTokens, overrides]
+    [baseTokens, overrides],
   );
 
   useEffect(() => {
@@ -79,8 +85,10 @@ export const ThemeProvider: React.FC<
   );
 };
 
-export const useTheme = () => {
+export const useTheme = (): ThemeContextValue => {
   const ctx = useContext(ThemeContext);
-  if (!ctx) throw new Error("useTheme must be used within ThemeProvider");
+  if (!ctx) {
+    throw new Error("useTheme must be used within ThemeProvider");
+  }
   return ctx;
 };
