@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 
 import { useTheme } from "./ThemeProvider";
-import type { YdThemeTokensOverrides } from "./types";
+import type { YDThemeTokensOverrides } from "./types";
 
 export const ConfigProvider: React.FC<
-  React.PropsWithChildren<{ theme?: { tokens?: YdThemeTokensOverrides } }>
+  React.PropsWithChildren<{ theme?: { tokens?: YDThemeTokensOverrides } }>
 > = ({ theme, children }) => {
   const { setOverrides } = useTheme();
 

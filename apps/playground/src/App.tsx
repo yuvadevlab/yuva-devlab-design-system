@@ -1,19 +1,11 @@
-import { Button, ConfigProvider, ThemeProvider } from "@yuva-devlab/ui";
+import { Button, ThemeProvider } from "@yuva-devlab/ui";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider>
-      <ConfigProvider
-        theme={{
-          tokens: {
-            color: {
-              accentPrimary: "#22c55e",
-            },
-          },
-        }}
-      >
+      <div style={{ padding: "2rem" }}>
         <Button variant="primary">Hello Yuva Devlab</Button>
-      </ConfigProvider>
+      </div>
     </ThemeProvider>
   );
 };

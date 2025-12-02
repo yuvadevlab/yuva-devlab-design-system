@@ -1,3 +1,11 @@
+import {
+  defaultRadii,
+  defaultShadows,
+  defaultSpacing,
+  defaultTheme,
+  defaultTypography,
+} from "@yuva-devlab/tokens";
+import clsx from "clsx";
 import React, {
   createContext,
   useContext,
@@ -12,33 +20,29 @@ import {
   defaultDarkTokens,
 } from "../constants/defaultTheme";
 
-import type {
-  YdThemeConfig,
-  YdThemeMode,
-  YdThemeTokensOverrides,
-} from "./types";
+import { YDThemeConfig, YDThemeMode, YDThemeTokensOverrides } from "./types";
 
 interface ThemeContextValue {
-  mode: YdThemeMode;
+  mode: YDThemeMode;
   resolvedMode: "light" | "dark";
-  tokens: Required<YdThemeTokensOverrides>;
-  setMode: (mode: YdThemeMode) => void;
-  setOverrides: (tokens: YdThemeTokensOverrides) => void;
+  tokens: Required<YDThemeTokensOverrides>;
+  setMode: (mode: YDThemeMode) => void;
+  setOverrides: (tokens: YDThemeTokensOverrides) => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 const mergeTokens = (
-  base: Required<YdThemeTokensOverrides>,
-  overrides?: YdThemeTokensOverrides,
-): Required<YdThemeTokensOverrides> => {
+  base: Required<YDThemeTokensOverrides>,
+  overrides?: YDThemeTokensOverrides,
+): Required<YDThemeTokensOverrides> => {
   return {
     color: { ...base.color, ...(overrides?.color || {}) },
     spacing: { ...base.spacing, ...(overrides?.spacing || {}) },
   };
 };
 
-const resolveMode = (mode: YdThemeMode): "light" | "dark" => {
+const resolveMode = (mode: YDThemeMode): "light" | "dark" => {
   if (mode !== "system") {
     return mode;
   }
@@ -51,10 +55,10 @@ const resolveMode = (mode: YdThemeMode): "light" | "dark" => {
 };
 
 export const ThemeProvider: React.FC<
-  React.PropsWithChildren<{ config?: YdThemeConfig }>
-> = ({ config, children }) => {
-  const [mode, setMode] = useState<YdThemeMode>(config?.mode || "system");
-  const [overrides, setOverrides] = useState<YdThemeTokensOverrides>(
+  React.PropsWithChildren<{ config?: YDThemeConfig; className?: string }>
+> = ({ config, children, className }) => {
+  const [mode, setMode] = useState<YDThemeMode>(config?.mode || "system");
+  const [overrides, setOverrides] = useState<YDThemeTokensOverrides>(
     config?.tokens || {},
   );
 
@@ -80,8 +84,25 @@ export const ThemeProvider: React.FC<
     setOverrides,
   };
 
+  // Combine all default theme classes
+  const themeClass = clsx(
+    defaultTheme,
+    defaultSpacing,
+    defaultTypography,
+    defaultRadii,
+    defaultShadows,
+    className,
+  );
+
   return (
-    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>
+      <div
+        className={themeClass}
+        style={{ height: "100%", width: "100%" }}
+      >
+        {children}
+      </div>
+    </ThemeContext.Provider>
   );
 };
 
