@@ -1,6 +1,7 @@
 {
   "name": "yuva-devlab-workspace",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo run build --filter=!//",
     "build:packages": "turbo run build --filter ./packages/*",
@@ -13,7 +14,6 @@
     "type-check": "turbo run type-check --filter=!//",
     "test": "turbo run test --filter=!//",
     "clean": "turbo run clean --filter=!//",
-    "pre-push": "pnpm run type-check && pnpm run lint && pnpm run build",
     "validate": "pnpm run format:check && pnpm run lint && pnpm run type-check && pnpm run build",
     "fix": "pnpm run format && pnpm run lint:fix",
     "prepare": "husky"
