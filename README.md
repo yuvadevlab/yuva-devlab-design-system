@@ -4,82 +4,97 @@ A fully–modular, scalable monorepo powering the **Yuva Devlab UI Library** —
 
 This workspace is built with:
 
-- **pnpm workspaces**
-- **Turborepo** task pipelines
-- **TypeScript**
-- **Vanilla Extract** (CSS-in-TS)
-- **Radix UI** (Headless Primitives)
-- **Storybook** (Documentation)
-- **Vite** (Rapid Development)
-- **Custom CLI (`yuva`)**
-- **Strict architecture based on modern design system patterns**
+- **pnpm workspaces** (Package management)
+- **Turborepo** (Task orchestration & caching)
+- **TypeScript** (Type safety)
+- **Vanilla Extract** (Zero-runtime CSS-in-TS)
+- **Radix UI** (Headless, accessible primitives)
+- **Storybook** (Component documentation)
+- **Vite** (Fast dev server and bundling)
+- **Husky & lint-staged** (Git hooks for quality)
+- **Strict architecture** (Tokens → Primitives → Components)
 
 ---
 
-## 📁 Monorepo Structure
+## 📁 Project Structure
 
 ```bash
 yuva-devlab-workspace/
-├── apps/
+├── .husky/             # Git hooks configuration
+├── .vscode/            # Shared editor settings
+├── apps/               # Consumer applications
 │   ├── docs/           # Storybook documentation app
-│   └── playground/     # Vite React sandbox for component testing
-├── packages/
-│   ├── cli/            # `yuva` CLI for scaffolding and automation
-│   ├── colors/         # Color palette generation utilities
-│   ├── config/         # Shared ESLint, Prettier, and TSConfig
-│   ├── primitives/     # Accessible, headless logic components (Radix)
+│   └── playground/     # Vite React sandbox for testing
+├── packages/           # Core library packages
+│   ├── cli/            # `yuva` CLI for scaffolding/tooling
+│   ├── colors/         # HSL-based palette generation
+│   ├── config/         # Shared linter (ESLint) and prettier configs
+│   ├── primitives/     # Headless logic components (Radix)
 │   ├── tokens/         # Design system tokens (Vanilla Extract)
-│   └── ui/             # Premium UI component library (Natural Theme)
-└── ...
+│   └── ui/             # Premium UI components (styled)
+├── .gitignore          # Git ignore patterns
+├── .nvmrc              # Node.js version locking
+├── .prettierignore     # Prettier ignore patterns
+├── README.md           # Root documentation (this file)
+├── commitlint.config.js # Commit message validation rules
+├── eslint.config.js    # Global ESLint (Flat Config)
+├── package.json        # Root workspace configuration
+├── pnpm-lock.yaml      # pnpm dependency lock file
+├── pnpm-workspace.yaml # pnpm workspace definition
+├── tsconfig.json       # Root TypeScript configuration
+└── turbo.json          # Turborepo pipeline settings
 ```
 
 ---
 
-## 🚀 Scripts
+## 🚀 Workspace Scripts
 
-### Root-level commands
+These commands use **Turborepo** to execute tasks across the entire monorepo with intelligent caching.
 
-| Command               | Description                                     |
-| --------------------- | ----------------------------------------------- |
-| `pnpm build`          | Runs build across all apps & packages via Turbo |
-| `pnpm dev`            | Runs all packages/apps in development mode      |
-| `pnpm dev:playground` | Start the Vite playground app                   |
-| `pnpm dev:docs`       | Start the Storybook documentation               |
-| `pnpm test`           | Runs unit tests across the workspace            |
-| `pnpm lint`           | Lints code using shared ESLint config           |
-| `pnpm format`         | Formats codebase using Prettier                 |
-| `pnpm clean`          | Clean build artifacts and Turbo cache           |
+### Primary Workflows
+
+| Command         | Description                                             |
+| :-------------- | :------------------------------------------------------ |
+| `pnpm build`    | Build all packages and apps                             |
+| `pnpm dev`      | Start development servers for all apps/packages         |
+| `pnpm test`     | Run unit tests across the whole workspace               |
+| `pnpm validate` | Comprehensive check: Format + Lint + Type-check + Build |
+| `pnpm fix`      | Automatically fix formatting and linting issues         |
+
+### Targeted Commands
+
+| Command               | Description                                        |
+| :-------------------- | :------------------------------------------------- |
+| `pnpm build:packages` | Build only the library packages                    |
+| `pnpm build:apps`     | Build only the applications (`docs`, `playground`) |
+| `pnpm lint`           | Check for linting errors                           |
+| `pnpm lint:fix`       | Fix linting errors automatically                   |
+| `pnpm format`         | Reformat all code using Prettier                   |
+| `pnpm format:check`   | Verify code formatting                             |
+| `pnpm type-check`     | Run TypeScript compiler checks                     |
+| `pnpm clean`          | Remove all build artifacts and cache               |
 
 ---
 
 ## 🧪 Development Flow
 
-1. **Tokens/Colors**: Update or generate new design constants.
-2. **Primitives**: Implement core logic and accessibility (Radix UI).
-3. **UI Components**: Build styled, premium components using Vanilla Extract + Tokens.
-4. **Verification**: Preview in `apps/playground` or document in `apps/docs`.
+1. **Tokens/Colors**: Define or generate visual constants in `packages/tokens` or `packages/colors`.
+2. **Primitives**: Create behavior-only logic in `packages/primitives`.
+3. **UI Components**: Build the final styled components in `packages/ui`.
+4. **Verification**: Preview changes instantly in `apps/playground` or document in `apps/docs`.
 
 ---
 
-## 📦 Packages
+## 📦 Package Documentation
 
-Each package is documented with its own dedicated README:
+Explore detailed documentation for each module:
 
-- [**Packages UI**](packages/ui/README.md) - Styled components and layout system.
+- [**Packages UI**](packages/ui/README.md) - Styled components and layout engine.
 - [**Packages Primitives**](packages/primitives/README.md) - Headless logic and A11y.
-- [**Packages Tokens**](packages/tokens/README.md) - Design tokens and theme automation.
-- [**Packages Colors**](packages/colors/README.md) - Palette generation utilities.
-- [**Packages CLI**](packages/cli/README.md) - Scaffolding and developer tools.
+- [**Packages Tokens**](packages/tokens/README.md) - Spacing, typography, and theme vars.
+- [**Packages Colors**](packages/colors/README.md) - Palette generation utility.
+- [**Packages CLI**](packages/cli/README.md) - Scaffolding and developer automation.
 - [**Packages Config**](packages/config/README.md) - Shared linter and compiler configs.
-
----
-
-## 🧩 Architecture Philosophy
-
-- **Atomic Tokens**: One source of truth for every visual constant.
-- **Headless Foundation**: Separation of behavior (Radix) from aesthetics.
-- **Organic Aesthetic**: Custom "Natural" theme using Green/Cream palettes.
-- **Developer First**: CLI-driven creation and zero-runtime styling.
 
 ---
 
