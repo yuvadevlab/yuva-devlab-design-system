@@ -5,6 +5,8 @@ Shared configuration packages used across the monorepo.
 Includes:
 
 - **@yuva-devlab/typescript-config**
+- **@yuva-devlab/eslint-config**
+- **@yuva-devlab/prettier-config**
 
 ---
 
@@ -46,5 +48,19 @@ Usage:
 ```json
 {
   "extends": "@yuva-devlab/eslint-config"
+}
+```
+
+## Prettier Config
+
+Located at:
+
+`packages/config/prettier-config`
+
+Usage:
+
+```json
+{
+  "prettier": "@yuva-devlab/prettier-config"
 }
 ```

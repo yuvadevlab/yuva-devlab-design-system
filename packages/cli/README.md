@@ -47,8 +47,8 @@ pnpm exec yuva create component <primitive-name> --kind primitive
 
 ```bash
 packages/ui/src/components/button/
-├── button.primitive.tsx
-├── button.styles.ts
+├── button.tsx
+├── button.styles.css.ts
 ├── button.test.tsx
 ├── button.types.ts
 └── index.ts
