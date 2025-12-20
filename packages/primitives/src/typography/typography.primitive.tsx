@@ -1,12 +1,12 @@
 import { Slot } from "@radix-ui/react-slot";
 import React from "react";
 
-export interface TypographyPrimitiveProps
-  extends React.HTMLAttributes<HTMLElement> {
-  asChild?: boolean;
-  as?: React.ElementType;
-}
+import { TypographyPrimitiveProps } from "./typography.primitive.types";
 
+/**
+ * Foundational typography primitive with polymorphic support.
+ * Handles base text structure, ref forwarding, and element tag mapping.
+ */
 export const TypographyPrimitive = React.forwardRef<
   HTMLElement,
   TypographyPrimitiveProps

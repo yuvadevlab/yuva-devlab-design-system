@@ -1,209 +1,246 @@
-import { Button, Input, Typography } from "@yuva-devlab/ui";
+import {
+  Button,
+  Input,
+  Typography,
+  Container,
+  Stack,
+  Flex,
+  Box,
+  Grid,
+} from "@yuva-devlab/ui";
 
 const App: React.FC = () => {
   return (
-    <div
-      style={{
-        padding: "40px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "48px",
-      }}
+    <Container
+      size="xl"
+      py="4xl"
     >
-      <Typography variant="h2">YUVA DevLab UI Demo</Typography>
+      <Stack gap="4xl">
+        <header>
+          <Typography variant="h1">YUVA DevLab</Typography>
+          <Typography
+            variant="body"
+            style={{ marginTop: "8px", opacity: 0.7 }}
+          >
+            A premium organic Design System built for speed and aesthetics.
+          </Typography>
+        </header>
 
-      {/* Shapes & Morphing Section */}
-      <section>
-        <Typography
-          variant="h4"
-          style={{ marginBottom: "20px" }}
-        >
-          Shape Morphing (Press to see transition)
-        </Typography>
-        <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-          <Button
-            variant="primary"
-            shape="round"
-            morph
+        {/* 1. CORE ACTION VARIANTS (MD3 Patterns) */}
+        <Box as="section">
+          <Typography
+            variant="h4"
+            style={{ marginBottom: "24px", fontWeight: 700 }}
           >
-            Round Style (Morphs with prop)
-          </Button>
-          <Button
-            variant="tonal"
-            shape="square"
-            morph
+            Core Action Variants
+          </Typography>
+          <Flex
+            gap="lg"
+            wrap="wrap"
           >
-            Square Style (Morphs with prop)
-          </Button>
-          <Button
-            variant="outlined"
-            shape="round"
-          >
-            Round (No Morph)
-          </Button>
-        </div>
-      </section>
+            <Button variant="elevated">Elevated</Button>
+            <Button variant="filled">Filled</Button>
+            <Button variant="tonal">Tonal</Button>
+            <Button variant="outlined">Outlined</Button>
+            <Button variant="text">Text Button</Button>
+          </Flex>
+        </Box>
 
-      {/* Sizes Section */}
-      <section>
-        <Typography
-          variant="h4"
-          style={{ marginBottom: "20px" }}
-        >
-          Extended Sizes
-        </Typography>
-        <div
-          style={{
-            display: "flex",
-            gap: "12px",
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <Button
-            size="xs"
-            variant="filled"
+        {/* 2. SEMANTIC ROLES */}
+        <Box as="section">
+          <Typography
+            variant="h4"
+            style={{ marginBottom: "24px", fontWeight: 700 }}
           >
-            Extra Small
-          </Button>
-          <Button
-            size="sm"
-            variant="filled"
+            Semantic & Brand Roles
+          </Typography>
+          <Flex
+            gap="lg"
+            wrap="wrap"
           >
-            Small
-          </Button>
-          <Button
-            size="md"
-            variant="filled"
-          >
-            Medium (Default)
-          </Button>
-          <Button
-            size="lg"
-            variant="filled"
-          >
-            Large
-          </Button>
-          <Button
-            size="xl"
-            variant="filled"
-          >
-            Extra Large
-          </Button>
-        </div>
-      </section>
+            <Button variant="primary">Primary Brand</Button>
+            <Button variant="secondary">Secondary Action</Button>
+            <Button variant="tertiary">Tertiary Emphasis</Button>
+            <Button danger>Danger / Destructive</Button>
+            <Button variant="link">External Link</Button>
+            <Button variant="ghost">Ghost Style</Button>
+          </Flex>
+        </Box>
 
-      {/* Widths Section */}
-      <section>
-        <Typography
-          variant="h4"
-          style={{ marginBottom: "20px" }}
-        >
-          Width Variations
-        </Typography>
-        <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <Button
-            width="narrow"
-            variant="outlined"
+        {/* 3. INTERACTIVE & BEHAVIORAL */}
+        <Box as="section">
+          <Typography
+            variant="h4"
+            style={{ marginBottom: "24px", fontWeight: 700 }}
           >
-            Narrow Padding
-          </Button>
-          <Button
-            width="default"
-            variant="outlined"
+            Interactive States
+          </Typography>
+          <Flex
+            gap="2xl"
+            align="center"
           >
-            Default Padding
-          </Button>
-          <Button
-            width="wide"
-            variant="outlined"
+            <Flex gap="md">
+              <Button
+                loading
+                variant="filled"
+              >
+                Loading State
+              </Button>
+              <Button
+                disabled
+                variant="tonal"
+              >
+                Disabled Action
+              </Button>
+            </Flex>
+            <Flex gap="md">
+              <Button
+                variant="primary"
+                shape="round"
+                morph
+              >
+                Morph Round
+              </Button>
+              <Button
+                variant="tonal"
+                shape="square"
+                morph
+              >
+                Morph Square
+              </Button>
+            </Flex>
+          </Flex>
+        </Box>
+
+        {/* 4. LAYOUT & SCALING */}
+        <Box as="section">
+          <Typography
+            variant="h4"
+            style={{ marginBottom: "24px", fontWeight: 700 }}
           >
-            Wide Padding
-          </Button>
-        </div>
-      </section>
+            Layout & Scaling
+          </Typography>
 
-      {/* Variants Section */}
-      <section>
-        <Typography
-          variant="h4"
-          style={{ marginBottom: "20px" }}
-        >
-          Modern Variants
-        </Typography>
-        <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <Button variant="elevated">Elevated</Button>
-          <Button variant="filled">Filled</Button>
-          <Button variant="tonal">Tonal</Button>
-          <Button variant="outlined">Outlined</Button>
-          <Button variant="text">Text</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="tertiary">Tertiary</Button>
-        </div>
-      </section>
+          <Stack gap="2xl">
+            {/* Sizes */}
+            <Box>
+              <Typography
+                variant="body"
+                style={{ marginBottom: "12px", opacity: 0.6 }}
+              >
+                Component Scaling (XS to XL)
+              </Typography>
+              <Flex
+                gap="md"
+                align="center"
+              >
+                <Button
+                  size="xs"
+                  variant="outlined"
+                >
+                  XS
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outlined"
+                >
+                  Small
+                </Button>
+                <Button
+                  size="md"
+                  variant="outlined"
+                >
+                  Medium
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outlined"
+                >
+                  Large
+                </Button>
+                <Button
+                  size="xl"
+                  variant="outlined"
+                >
+                  XL
+                </Button>
+              </Flex>
+            </Box>
 
-      <section>
-        <Typography
-          variant="h4"
-          style={{ marginBottom: "20px" }}
-        >
-          Legacy & Utility Variants
-        </Typography>
-        <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <Button variant="primary">Primary</Button>
-          <Button variant="default">Default</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="link">Link</Button>
-          <Button danger>Danger Action</Button>
-          <Button loading>Loading State</Button>
-        </div>
-      </section>
+            {/* Widths */}
+            <Box>
+              <Typography
+                variant="body"
+                style={{ marginBottom: "12px", opacity: 0.6 }}
+              >
+                Padding Densities
+              </Typography>
+              <Flex gap="md">
+                <Button width="narrow">Narrow</Button>
+                <Button width="default">Default</Button>
+                <Button width="wide">Wide Action</Button>
+              </Flex>
+            </Box>
+          </Stack>
+        </Box>
 
-      {/* Inputs Section */}
-      <section style={{ maxWidth: "400px" }}>
-        <Typography
-          variant="h4"
-          style={{ marginBottom: "20px" }}
+        {/* 5. FORM CONTROLS */}
+        <Box
+          as="section"
+          style={{ maxWidth: "480px" }}
         >
-          Form Controls
-        </Typography>
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          <Input
-            label="Email Address"
-            placeholder="yuva@devlab.com"
-            helperText="We'll never share your email with anyone else."
-          />
-          <Input
-            label="Password"
-            type="password"
-            placeholder="••••••••"
-            errorMessage="Password must be at least 8 characters"
-            error
-          />
-        </div>
-      </section>
-    </div>
+          <Typography
+            variant="h4"
+            style={{ marginBottom: "24px", fontWeight: 700 }}
+          >
+            Form Controls
+          </Typography>
+          <Stack gap="lg">
+            <Input
+              label="Email Address"
+              placeholder="yuva@devlab.com"
+              helperText="We'll never share your email with anyone else."
+            />
+            <Input
+              label="Security Level"
+              type="password"
+              placeholder="••••••••"
+              errorMessage="Password is too weak"
+              error
+            />
+          </Stack>
+        </Box>
+
+        {/* 6. GRID SYSTEM DEMO */}
+        <Box as="section">
+          <Typography
+            variant="h4"
+            style={{ marginBottom: "24px", fontWeight: 700 }}
+          >
+            Grid System Demo
+          </Typography>
+          <Grid
+            columns={3}
+            gap="lg"
+          >
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <Box
+                key={i}
+                p="xl"
+                style={{
+                  backgroundColor: "rgba(62, 106, 77, 0.1)",
+                  borderRadius: "12px",
+                  border: "1px solid rgba(62, 106, 77, 0.2)",
+                  textAlign: "center",
+                }}
+              >
+                <Typography variant="h6">Grid Item {i}</Typography>
+              </Box>
+            ))}
+          </Grid>
+        </Box>
+      </Stack>
+    </Container>
   );
 };
 

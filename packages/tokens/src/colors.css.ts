@@ -2,8 +2,19 @@ import { createGlobalThemeContract } from "@vanilla-extract/css";
 
 const semanticGroup = (
   name: string,
-): { main: string; hover: string; active: string; subtle: string } => ({
+): {
+  main: string;
+  onMain: string;
+  container: string;
+  onContainer: string;
+  hover: string;
+  active: string;
+  subtle: string;
+} => ({
   main: `yd-color-${name}`,
+  onMain: `yd-color-on-${name}`,
+  container: `yd-color-${name}-container`,
+  onContainer: `yd-color-on-${name}-container`,
   hover: `yd-color-${name}-hover`,
   active: `yd-color-${name}-active`,
   subtle: `yd-color-${name}-subtle`,

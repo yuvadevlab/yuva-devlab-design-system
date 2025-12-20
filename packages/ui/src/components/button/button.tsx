@@ -5,6 +5,15 @@ import React from "react";
 import * as styles from "./button.styles.css";
 import type { ButtonProps } from "./button.types";
 
+/**
+ * Button component for triggering actions.
+ * Supports multiple variants, sizes, and interactive states like loading and disabled.
+ *
+ * @example
+ * <Button variant="primary" onClick={() => console.log('clicked')}>
+ *   Click Me
+ * </Button>
+ */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {

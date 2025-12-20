@@ -13,6 +13,17 @@ const defaultLabelProps = {
   },
 };
 
+/**
+ * Input component for text entry.
+ * Includes support for labels, helper text, and error states.
+ *
+ * @example
+ * <Input
+ *   label="Email"
+ *   placeholder="Enter your email"
+ *   errorMessage="Invalid email address"
+ * />
+ */
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {

@@ -1,5 +1,20 @@
 import { createGlobalTheme, createThemeContract } from "@vanilla-extract/css";
 
+import { generateTonalPalette } from "./utils/color-generator";
+
+/**
+ * Seed colors for tonal palette generation
+ * These are the basis for the entire tonal system.
+ */
+export const SEEDS = {
+  primary: "#3e6a4d",
+  secondary: "#516350",
+  tertiary: "#3b6470",
+  error: "#ba1a1a",
+  neutral: "#5e615b",
+  neutralVariant: "#5d6259",
+};
+
 /**
  * Complete tonal palette system with 13 levels per color (0-100)
  * These are the foundation colors that semantic tokens map to
@@ -98,94 +113,10 @@ export const palettes = createThemeContract({
 });
 
 createGlobalTheme(":root", palettes, {
-  primary: {
-    0: "#000000",
-    10: "#001a41",
-    20: "#002f65",
-    30: "#004494",
-    40: "#1a73e8",
-    50: "#4285f4",
-    60: "#669df6",
-    70: "#8ab4f8",
-    80: "#aecbfa",
-    90: "#d2e3fc",
-    95: "#e8f0fe",
-    99: "#fafbff",
-    100: "#ffffff",
-  },
-  secondary: {
-    0: "#000000",
-    10: "#1d192b",
-    20: "#332d41",
-    30: "#4a4458",
-    40: "#625b71",
-    50: "#7a7289",
-    60: "#958da5",
-    70: "#b0a7c0",
-    80: "#ccc2dc",
-    90: "#e8def8",
-    95: "#f6edff",
-    99: "#fffbfe",
-    100: "#ffffff",
-  },
-  tertiary: {
-    0: "#000000",
-    10: "#31111d",
-    20: "#492532",
-    30: "#633b48",
-    40: "#7d5260",
-    50: "#986977",
-    60: "#b58392",
-    70: "#d29dac",
-    80: "#efb8c8",
-    90: "#ffd8e4",
-    95: "#ffecf1",
-    99: "#fffbfa",
-    100: "#ffffff",
-  },
-  error: {
-    0: "#000000",
-    10: "#410e0b",
-    20: "#601410",
-    30: "#8c1d18",
-    40: "#b3261e",
-    50: "#dc362e",
-    60: "#e46962",
-    70: "#ec928e",
-    80: "#f2b8b5",
-    90: "#f9dedc",
-    95: "#fceeee",
-    99: "#fffbf9",
-    100: "#ffffff",
-  },
-  neutral: {
-    0: "#000000",
-    10: "#1c1b1f",
-    20: "#313033",
-    30: "#484649",
-    40: "#605d62",
-    50: "#787579",
-    60: "#939094",
-    70: "#aeaaae",
-    80: "#c9c5ca",
-    90: "#e6e1e5",
-    95: "#f4eff4",
-    99: "#fffbfe",
-    100: "#ffffff",
-  },
-  neutralVariant: {
-    0: "#000000",
-    10: "#1d1a22",
-    20: "#322f37",
-    30: "#49454f",
-    40: "#605d66",
-    50: "#79747e",
-    60: "#938f99",
-    70: "#aea9b4",
-    80: "#cac4d0",
-    90: "#e7e0ec",
-    95: "#f5eefa",
-    99: "#fffbfe",
-    100: "#ffffff",
-  },
+  primary: generateTonalPalette(SEEDS.primary),
+  secondary: generateTonalPalette(SEEDS.secondary),
+  tertiary: generateTonalPalette(SEEDS.tertiary),
+  error: generateTonalPalette(SEEDS.error),
+  neutral: generateTonalPalette(SEEDS.neutral),
+  neutralVariant: generateTonalPalette(SEEDS.neutralVariant),
 });

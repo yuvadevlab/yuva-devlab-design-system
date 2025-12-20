@@ -92,7 +92,7 @@ export const variant = styleVariants({
   },
   primary: {
     backgroundColor: colors.brand.primary.main,
-    color: colors.text.onPrimary,
+    color: colors.brand.primary.onMain,
     borderColor: colors.brand.primary.main,
     ":hover": {
       backgroundColor: colors.brand.primary.hover,
@@ -154,15 +154,16 @@ export const variant = styleVariants({
     },
   },
   tonal: {
-    backgroundColor: colors.brand.primary.subtle,
-    color: colors.text.primary,
+    backgroundColor: colors.brand.primary.container,
+    color: colors.brand.primary.onContainer,
     borderColor: "transparent",
     ":hover": {
-      backgroundColor: colors.bg.surfaceHover,
+      backgroundColor: colors.brand.primary.hover, // Maybe refine hover for tonal?
+      color: colors.brand.primary.onMain,
       boxShadow: shadows.xs,
     },
     ":active": {
-      backgroundColor: colors.bg.surfaceActive,
+      backgroundColor: colors.brand.primary.active,
     },
   },
   outlined: {
@@ -191,7 +192,7 @@ export const variant = styleVariants({
   },
   secondary: {
     backgroundColor: colors.brand.secondary.main,
-    color: colors.text.onPrimary,
+    color: colors.brand.secondary.onMain,
     borderColor: colors.brand.secondary.main,
     ":hover": {
       backgroundColor: colors.brand.secondary.hover,
@@ -204,7 +205,7 @@ export const variant = styleVariants({
   },
   tertiary: {
     backgroundColor: colors.brand.tertiary.main,
-    color: colors.text.onPrimary,
+    color: colors.brand.tertiary.onMain,
     borderColor: colors.brand.tertiary.main,
     ":hover": {
       backgroundColor: colors.brand.tertiary.hover,

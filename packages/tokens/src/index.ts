@@ -9,8 +9,6 @@ export { zIndex } from "./zindex.css";
 export { palettes } from "./palettes.css";
 
 export {
-  // Palette themes (advanced use)
-  darkPalettes,
   // Semantic themes (primary API)
   defaultTheme,
   lightTheme,

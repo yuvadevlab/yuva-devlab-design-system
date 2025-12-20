@@ -18,6 +18,15 @@ const variantElementMap: Record<TypographyVariant, React.ElementType> = {
   label: "label",
 };
 
+/**
+ * Typography component for consistent text styling.
+ * Supports various variants (h1-h6, body, caption, label) and weights.
+ *
+ * @example
+ * <Typography variant="h1" weight="bold">
+ *   Main Title
+ * </Typography>
+ */
 export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
   ({ variant = "body", weight, className, asChild, ...props }, ref) => {
     // If asChild is true, we don't force a specific element tag, otherwise we map variant to tag
