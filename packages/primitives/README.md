@@ -2,16 +2,17 @@
 
 Headless, behavior-only primitives used by `@yuva-devlab/ui`.
 
-These are NOT styled.  
-They only contain interaction logic, accessibility, and rendering contracts.
+These are **NOT** styled. They provide the core interaction logic, accessibility
+(A11y), and rendering contracts for our component library.
 
 ---
 
-## Purpose
+## 🛠 Tech Stack
 
-- Provide reusable building blocks
-- Keep UI layer clean
-- Ensure consistent behavior across components
+- **Radix UI**: Leveraged for complex, high-accessibility primitives (e.g.,
+  Select, Switch).
+- **Polymorphism**: Built with `asChild` support via `@radix-ui/react-slot`.
+- **TypeScript**: Full type safety for all primitive props.
 
 ---
 
@@ -20,39 +21,43 @@ They only contain interaction logic, accessibility, and rendering contracts.
 ```bash
 packages/primitives/
 ├── src/
-│ ├── button/
-│ │ ├── button.primitive.tsx
-│ │ └── index.ts
-│ └── index.ts
+│   ├── box/            # Polymorphic layout base
+│   ├── button/         # Accessible button logic
+│   ├── input/          # Base input logic
+│   ├── typography/     # Text rendering logic
+│   └── index.ts        # Entry point
+└── README.md
 ```
 
 ---
 
-## Example Primitive
+## Example: Box Primitive
+
+Our `BoxPrimitive` serves as the foundation for the entire layout system,
+handling polymorphic `as` and `asChild` props.
 
 ```tsx
-export const ButtonPrimitive = React.forwardRef<
-  HTMLButtonElement,
-  ButtonPrimitiveProps
->(({ loading, disabled, children, ...rest }, ref) => {
-  return (
-    <button
-      ref={ref}
-      disabled={loading || disabled}
-      {...rest}
-    >
-      {children}
-    </button>
-  );
-});
+import { Slot } from "@radix-ui/react-slot";
+
+export const BoxPrimitive = React.forwardRef<HTMLElement, BoxPrimitiveProps>(
+  ({ asChild, as: Component = "div", ...props }, ref) => {
+    const Comp = asChild ? Slot : Component;
+    return (
+      <Comp
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
 ```
 
 ---
 
-## Usage
-
-UI layer component primitives
+## Usage in UI Package
 
 ```tsx
-import { ButtonPrimitive } from "@yuva-devlab/primitives";
+import { BoxPrimitive } from "@yuva-devlab/primitives";
+
+// In @yuva-devlab/ui, we wrap these with Vanilla Extract styles
 ```

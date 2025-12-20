@@ -1,14 +1,15 @@
 # 🎨 @yuva-devlab/tokens
 
-Design system tokens implemented using **StyleX variables**.
+Design system tokens implemented using **Vanilla Extract**.
 
 These tokens power:
 
-- Colors
-- Spacing
-- Typography (later)
-- Radii (later)
-- Shadows (later)
+- Tonal Palettes (Automated generation)
+- Semantic Colors (Natural / Organic theme)
+- Spacing (Systemic 2xs-5xl scales)
+- Typography (Scale-based)
+- Radii & Shadows
+- Breakpoints & Z-indices
 
 ---
 
@@ -17,32 +18,39 @@ These tokens power:
 ```bash
 packages/tokens/
 ├── src/
-│ ├── color.stylex.ts
-│ ├── spacing.stylex.ts
-│ └── index.ts
+│   ├── utils/          # Token generation logic
+│   ├── palettes.css.ts # Global tonal palettes
+│   ├── themes.css.ts   # Semantic light/dark mappings
+│   ├── spacing.css.ts  # Spacing scales
+│   ├── typography.css.ts # Type scales
+│   └── index.ts        # Entry point
 └── README.md
 ```
 
 ---
 
-## Example
+## 🚀 Key Technical Features
 
-```ts
-export const colors = stylex.defineVars({
-  accentPrimary: "var(--yd-color-accent-primary)",
-  textPrimary: "var(--yd-color-text-primary)",
-});
-```
+### 1. Automated Tonal Palettes
+
+We use a single source of truth (`SEEDS`) to generate mathematically consistent
+MD3 tonal palettes.
+
+### 2. Zero-Runtime CSS
+
+Vanilla Extract compiles these tokens into static CSS variables at build time,
+ensuring maximum performance with type-safety.
 
 ---
 
 ## How UI library uses tokens
 
 ```ts
-import { colors, spacing } from "@yuva-devlab/tokens";
+import { vars } from "@yuva-devlab/tokens";
+import { style } from "@vanilla-extract/css";
 
-stylex.create({
-  backgroundColor: colors.accentPrimary,
-  padding: spacing.md,
+export const componentStyle = style({
+  backgroundColor: vars.colors.primary,
+  padding: vars.spacing.md,
 });
 ```
