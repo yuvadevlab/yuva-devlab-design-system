@@ -15,7 +15,8 @@
     "clean": "turbo run clean --filter=!//",
     "pre-push": "pnpm run type-check && pnpm run lint && pnpm run build",
     "validate": "pnpm run format:check && pnpm run lint && pnpm run type-check && pnpm run build",
-    "fix": "pnpm run format && pnpm run lint:fix"
+    "fix": "pnpm run format && pnpm run lint:fix",
+    "prepare": "husky"
   },
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {
