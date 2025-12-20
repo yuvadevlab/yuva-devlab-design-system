@@ -1,0 +1,90 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local", "**/.env"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.*"],
+      "outputs": ["dist/**", "storybook-static/**", "build/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".eslintrc.js",
+        "eslint.config.js",
+        ".eslintignore"
+      ],
+      "outputs": []
+    },
+    "lint:fix": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "outputs": []
+    },
+    "format": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "prettier.config.js",
+        ".prettierrc",
+        ".prettierignore"
+      ],
+      "outputs": []
+    },
+    "format:check": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "prettier.config.js",
+        ".prettierrc",
+        ".prettierignore"
+      ],
+      "outputs": []
+    },
+    "type-check": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "tsconfig.json"],
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "vitest.config.ts", "jest.config.js"],
+      "outputs": ["coverage/**", ".vitest/**"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    },
+    "clean": {
+      "cache": false
+    },
+    "clean:build": {
+      "cache": false
+    },
+    "clean:node_modules": {
+      "cache": false
+    },
+    "//#lint": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "{workspaces}/**/*.ts",
+        "{workspaces}/**/*.tsx",
+        "{workspaces}/**/*.js",
+        "{workspaces}/**/*.jsx"
+      ]
+    },
+    "//#format": {
+      "inputs": [
+        "{workspaces}/**/*.ts",
+        "{workspaces}/**/*.tsx",
+        "{workspaces}/**/*.js",
+        "{workspaces}/**/*.jsx",
+        "{workspaces}/**/*.json",
+        "{workspaces}/**/*.md"
+      ]
+    }
+  }
+}
