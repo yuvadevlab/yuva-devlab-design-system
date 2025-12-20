@@ -17,7 +17,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       variant = "outline",
-      size = "middle",
+      size = "md",
       error = false,
       label,
       labelProps,

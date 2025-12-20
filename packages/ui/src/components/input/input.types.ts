@@ -1,7 +1,7 @@
 import { InputPrimitiveProps } from "@yuva-devlab/primitives";
 
 export type InputVariant = "outline" | "filled";
-export type InputSize = "small" | "middle" | "large";
+export type InputSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 export interface InputProps extends Omit<InputPrimitiveProps, "size"> {
   variant?: InputVariant;

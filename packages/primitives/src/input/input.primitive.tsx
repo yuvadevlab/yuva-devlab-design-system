@@ -1,9 +1,6 @@
 import React from "react";
 
-export interface InputPrimitiveProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  asChild?: boolean;
-}
+import { type InputPrimitiveProps } from "./input.primitive.types";
 
 export const InputPrimitive = React.forwardRef<
   HTMLInputElement,

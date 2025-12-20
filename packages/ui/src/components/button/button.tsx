@@ -9,9 +9,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       variant = "default",
-      size = "middle",
+      size = "md",
+      shape = "round",
+      width = "default",
       danger = false,
       block = false,
+      morph = false,
       className,
       disabled,
       loading,
@@ -28,7 +31,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={clsx(
           styles.base,
           styles.size[size],
+          styles.shape[shape],
+          styles.width[width],
           styles.variant[variant],
+          morph && styles.morph[shape],
           danger && styles.danger,
           block && styles.block,
           (disabled || loading) && styles.disabled,

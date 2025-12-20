@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@vanilla-extract/vite-plugin": "^5.1.1",
+    "@yuva-devlab/colors": "workspace:*",
     "@yuva-devlab/eslint-config": "workspace:*",
     "@yuva-devlab/prettier-config": "workspace:*",
     "@yuva-devlab/typescript-config": "workspace:*",

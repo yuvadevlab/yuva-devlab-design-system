@@ -1,77 +1,62 @@
 import { createGlobalThemeContract } from "@vanilla-extract/css";
 
-/**
- * Colors are expressed as CSS variables.
- * ThemeProvider + ConfigProvider are responsible for setting the actual values.
- *
- * This contract matches our YD Design System Token structure.
- * We use createGlobalThemeContract to enforce specific variable names
- * that match our runtime theme application logic.
- */
+const semanticGroup = (
+  name: string,
+): { main: string; hover: string; active: string; subtle: string } => ({
+  main: `yd-color-${name}`,
+  hover: `yd-color-${name}-hover`,
+  active: `yd-color-${name}-active`,
+  subtle: `yd-color-${name}-subtle`,
+});
+
 export const colors = createGlobalThemeContract({
-  // ========== Brand / Primary ==========
-  accentPrimary: "yd-color-accent-primary",
-  accentPrimaryHover: "yd-color-accent-primary-hover",
-  accentPrimaryActive: "yd-color-accent-primary-active",
-  accentPrimarySubtle: "yd-color-accent-primary-subtle",
+  // Semantic Brand Colors (Seed-based)
+  brand: {
+    primary: semanticGroup("primary"),
+    secondary: semanticGroup("secondary"),
+    tertiary: semanticGroup("tertiary"),
+    danger: semanticGroup("danger"),
+    success: semanticGroup("success"),
+    warning: semanticGroup("warning"),
+    info: semanticGroup("info"),
+  },
 
-  // ========== Danger / Error ==========
-  accentDanger: "yd-color-accent-danger",
-  accentDangerHover: "yd-color-accent-danger-hover",
-  accentDangerActive: "yd-color-accent-danger-active",
-  accentDangerSubtle: "yd-color-accent-danger-subtle",
+  // Text Tokens
+  text: {
+    primary: "yd-color-text-primary",
+    secondary: "yd-color-text-secondary",
+    tertiary: "yd-color-text-tertiary",
+    disabled: "yd-color-text-disabled",
+    onPrimary: "yd-color-text-on-primary",
+    onColor: "yd-color-text-on-color",
+    inverse: "yd-color-text-inverse",
+  },
 
-  // ========== Success ==========
-  accentSuccess: "yd-color-accent-success",
-  accentSuccessHover: "yd-color-accent-success-hover",
-  accentSuccessActive: "yd-color-accent-success-active",
-  accentSuccessSubtle: "yd-color-accent-success-subtle",
+  // Background Tokens
+  bg: {
+    body: "yd-color-bg-body",
+    surface: "yd-color-bg-surface",
+    surfaceHover: "yd-color-bg-surface-hover",
+    surfaceActive: "yd-color-bg-surface-active",
+    surfaceRaised: "yd-color-bg-surface-raised",
+    surfaceOverlay: "yd-color-bg-surface-overlay",
+    canvas: "yd-color-bg-canvas",
+    subtle: "yd-color-bg-subtle",
+    disabled: "yd-color-bg-disabled",
+  },
 
-  // ========== Warning ==========
-  accentWarning: "yd-color-accent-warning",
-  accentWarningHover: "yd-color-accent-warning-hover",
-  accentWarningActive: "yd-color-accent-warning-active",
-  accentWarningSubtle: "yd-color-accent-warning-subtle",
+  // Border Tokens
+  border: {
+    subtle: "yd-color-border-subtle",
+    default: "yd-color-border-default",
+    strong: "yd-color-border-strong",
+    interactive: "yd-color-border-interactive",
+    disabled: "yd-color-border-disabled",
+  },
 
-  // ========== Info ==========
-  accentInfo: "yd-color-accent-info",
-  accentInfoHover: "yd-color-accent-info-hover",
-  accentInfoActive: "yd-color-accent-info-active",
-  accentInfoSubtle: "yd-color-accent-info-subtle",
-
-  // ========== Text ==========
-  textPrimary: "yd-color-text-primary",
-  textSecondary: "yd-color-text-secondary",
-  textTertiary: "yd-color-text-tertiary",
-  textDisabled: "yd-color-text-disabled",
-  textOnPrimary: "yd-color-text-on-primary",
-  textOnColor: "yd-color-text-on-color",
-  textInverse: "yd-color-text-inverse",
-
-  // ========== Borders ==========
-  borderSubtle: "yd-color-border-subtle",
-  borderDefault: "yd-color-border-default",
-  borderStrong: "yd-color-border-strong",
-  borderInteractive: "yd-color-border-interactive",
-  borderDisabled: "yd-color-border-disabled",
-
-  // ========== Backgrounds ==========
-  bgBody: "yd-color-bg-body",
-  bgSurface: "yd-color-bg-surface",
-  bgSurfaceHover: "yd-color-bg-surface-hover",
-  bgSurfaceActive: "yd-color-bg-surface-active",
-  bgSurfaceRaised: "yd-color-bg-surface-raised",
-  bgSurfaceOverlay: "yd-color-bg-surface-overlay",
-  bgCanvas: "yd-color-bg-canvas",
-  bgSubtle: "yd-color-bg-subtle",
-  bgDisabled: "yd-color-bg-disabled",
-
-  // ========== Components ==========
-  bgButton: "yd-color-bg-button",
-  bgButtonHover: "yd-color-bg-button-hover",
-  bgButtonActive: "yd-color-bg-button-active",
-
-  // ========== Interaction ==========
-  focusRing: "yd-color-focus-ring",
-  overlay: "yd-color-overlay",
+  // Interaction Tokens
+  interaction: {
+    focusRing: "yd-color-focus-ring",
+    overlay: "yd-color-overlay",
+  },
 });

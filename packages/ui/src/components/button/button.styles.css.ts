@@ -1,109 +1,234 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { colors, radii, spacing, typography } from "@yuva-devlab/tokens";
+import {
+  colors,
+  radii,
+  spacing,
+  typography,
+  shadows,
+} from "@yuva-devlab/tokens";
 
 export const base = style({
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  gap: spacing.xs,
+  gap: spacing.sm,
   fontFamily: typography.fonts.sans,
   fontWeight: typography.fontWeights.medium,
   borderWidth: 1,
   borderStyle: "solid",
-  borderRadius: radii.md,
   cursor: "pointer",
   transition:
-    "background-color 150ms, border-color 150ms, color 150ms, box-shadow 150ms",
+    "all 200ms cubic-bezier(0.4, 0, 0.2, 1), border-radius 200ms cubic-bezier(0.4, 0, 0.2, 1)",
   whiteSpace: "nowrap",
   outline: "none",
+  position: "relative",
+  overflow: "hidden",
   ":focus-visible": {
-    boxShadow: colors.focusRing,
+    boxShadow: `0 0 0 2px ${colors.bg.body}, 0 0 0 4px ${colors.brand.primary.main}`,
+  },
+  ":disabled": {
+    opacity: 0.38,
+    cursor: "not-allowed",
+    pointerEvents: "none",
+  },
+  ":active": {
+    transform: "scale(0.97)",
   },
 });
 
-// Size variants
+// Size variants (Standard heights)
 export const size = styleVariants({
-  small: {
-    paddingInline: spacing.sm,
-    paddingBlock: spacing.xs,
-    fontSize: typography.fontSizes.xs,
-    height: "24px",
+  xs: { height: "28px", fontSize: typography.fontSizes.xs },
+  sm: { height: "32px", fontSize: typography.fontSizes.sm },
+  md: { height: "40px", fontSize: typography.fontSizes.sm },
+  lg: { height: "48px", fontSize: typography.fontSizes.md },
+  xl: { height: "56px", fontSize: typography.fontSizes.md },
+});
+
+// Static shape variants
+export const shape = styleVariants({
+  round: {
+    borderRadius: radii.xl,
   },
-  middle: {
-    paddingInline: spacing.md,
-    paddingBlock: spacing.xs,
-    fontSize: typography.fontSizes.sm,
-    height: "32px",
+  square: {
+    borderRadius: radii.md,
   },
-  large: {
-    paddingInline: spacing.lg,
-    paddingBlock: spacing.sm,
-    fontSize: typography.fontSizes.md,
-    height: "40px",
+});
+
+// Standalone morph styles
+export const morph = styleVariants({
+  round: {
+    ":active": {
+      borderRadius: radii.md,
+    },
   },
+  square: {
+    ":active": {
+      borderRadius: radii.xl,
+    },
+  },
+});
+
+// Width variants (Padding control)
+export const width = styleVariants({
+  narrow: { paddingInline: spacing.md },
+  default: { paddingInline: spacing.lg },
+  wide: { paddingInline: spacing["2xl"] },
 });
 
 // Variant styles
 export const variant = styleVariants({
   default: {
-    backgroundColor: colors.bgSurface,
-    color: colors.textPrimary,
-    borderColor: colors.borderDefault,
+    backgroundColor: colors.bg.surface,
+    color: colors.text.primary,
+    borderColor: colors.border.default,
     ":hover": {
-      backgroundColor: colors.bgSurfaceHover,
-      borderColor: colors.borderStrong,
+      backgroundColor: colors.bg.surfaceHover,
+      borderColor: colors.border.strong,
     },
     ":active": {
-      backgroundColor: colors.bgSurfaceActive,
+      backgroundColor: colors.bg.surfaceActive,
     },
   },
   primary: {
-    backgroundColor: "var(--yd-color-accent-primary)",
-    color: "var(--yd-color-text-on-primary)",
-    borderColor: "var(--yd-color-accent-primary)",
+    backgroundColor: colors.brand.primary.main,
+    color: colors.text.onPrimary,
+    borderColor: colors.brand.primary.main,
     ":hover": {
-      backgroundColor: "var(--yd-color-accent-primary-hover)",
-      borderColor: "var(--yd-color-accent-primary-hover)",
+      backgroundColor: colors.brand.primary.hover,
+      borderColor: colors.brand.primary.hover,
+      boxShadow: shadows.sm,
     },
     ":active": {
-      backgroundColor: "var(--yd-color-accent-primary-active)",
-      borderColor: "var(--yd-color-accent-primary-active)",
+      backgroundColor: colors.brand.primary.active,
     },
   },
   ghost: {
     backgroundColor: "transparent",
-    color: colors.textSecondary,
+    color: colors.text.secondary,
     borderColor: "transparent",
     ":hover": {
-      backgroundColor: colors.bgSubtle,
-      color: colors.textPrimary,
+      backgroundColor: colors.bg.surfaceHover,
+      color: colors.text.primary,
     },
     ":active": {
-      backgroundColor: colors.bgSurfaceActive,
+      backgroundColor: colors.bg.surfaceActive,
     },
   },
   link: {
     backgroundColor: "transparent",
-    color: "var(--yd-color-accent-primary)",
+    color: colors.brand.primary.main,
     borderColor: "transparent",
     paddingInline: 0,
-    paddingBlock: 0,
     height: "auto",
+    borderRadius: 0,
     ":hover": {
+      color: colors.brand.primary.hover,
       textDecoration: "underline",
-      color: "var(--yd-color-accent-primary-hover)",
+    },
+  },
+  elevated: {
+    backgroundColor: colors.bg.surfaceRaised,
+    color: colors.brand.primary.main,
+    borderColor: "transparent",
+    boxShadow: shadows.sm,
+    ":hover": {
+      backgroundColor: colors.bg.surfaceHover,
+      boxShadow: shadows.md,
+    },
+    ":active": {
+      backgroundColor: colors.bg.surfaceActive,
+      boxShadow: shadows.sm,
+    },
+  },
+  filled: {
+    backgroundColor: colors.brand.primary.main,
+    color: colors.text.onPrimary,
+    borderColor: "transparent",
+    ":hover": {
+      backgroundColor: colors.brand.primary.hover,
+      boxShadow: shadows.xs,
+    },
+    ":active": {
+      backgroundColor: colors.brand.primary.active,
+    },
+  },
+  tonal: {
+    backgroundColor: colors.brand.primary.subtle,
+    color: colors.text.primary,
+    borderColor: "transparent",
+    ":hover": {
+      backgroundColor: colors.bg.surfaceHover,
+      boxShadow: shadows.xs,
+    },
+    ":active": {
+      backgroundColor: colors.bg.surfaceActive,
+    },
+  },
+  outlined: {
+    backgroundColor: "transparent",
+    color: colors.brand.primary.main,
+    borderColor: colors.border.default,
+    ":hover": {
+      backgroundColor: colors.bg.surfaceHover,
+      borderColor: colors.brand.primary.main,
+    },
+    ":active": {
+      backgroundColor: colors.bg.surfaceActive,
+      borderColor: colors.brand.primary.main,
+    },
+  },
+  text: {
+    backgroundColor: "transparent",
+    color: colors.brand.primary.main,
+    borderColor: "transparent",
+    ":hover": {
+      backgroundColor: colors.bg.surfaceHover,
+    },
+    ":active": {
+      backgroundColor: colors.bg.surfaceActive,
+    },
+  },
+  secondary: {
+    backgroundColor: colors.brand.secondary.main,
+    color: colors.text.onPrimary,
+    borderColor: colors.brand.secondary.main,
+    ":hover": {
+      backgroundColor: colors.brand.secondary.hover,
+      borderColor: colors.brand.secondary.hover,
+      boxShadow: shadows.sm,
+    },
+    ":active": {
+      backgroundColor: colors.brand.secondary.active,
+    },
+  },
+  tertiary: {
+    backgroundColor: colors.brand.tertiary.main,
+    color: colors.text.onPrimary,
+    borderColor: colors.brand.tertiary.main,
+    ":hover": {
+      backgroundColor: colors.brand.tertiary.hover,
+      borderColor: colors.brand.tertiary.hover,
+      boxShadow: shadows.sm,
+    },
+    ":active": {
+      backgroundColor: colors.brand.tertiary.active,
     },
   },
 });
 
 // Modifier styles
 export const danger = style({
-  backgroundColor: "var(--yd-color-accent-danger)",
-  borderColor: "var(--yd-color-accent-danger)",
-  color: "var(--yd-color-text-on-primary)",
+  backgroundColor: colors.brand.danger.main,
+  borderColor: colors.brand.danger.main,
+  color: colors.text.onPrimary,
   ":hover": {
-    backgroundColor: "var(--yd-color-accent-danger-hover)",
-    borderColor: "var(--yd-color-accent-danger-hover)",
+    backgroundColor: colors.brand.danger.hover,
+    borderColor: colors.brand.danger.hover,
+    boxShadow: shadows.sm,
+  },
+  ":active": {
+    backgroundColor: colors.brand.danger.active,
   },
 });
 
@@ -113,6 +238,9 @@ export const block = style({
 });
 
 export const disabled = style({
-  opacity: 0.6,
+  backgroundColor: colors.brand.primary.subtle,
+  color: colors.text.primary,
+  borderColor: colors.border.default,
   cursor: "not-allowed",
+  pointerEvents: "none",
 });

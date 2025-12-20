@@ -16,44 +16,57 @@ export const base = style({
 
 export const variant = styleVariants({
   outline: {
-    borderColor: colors.borderDefault,
-    backgroundColor: colors.bgSurface,
-    color: colors.textPrimary,
+    borderColor: colors.border.default,
+    backgroundColor: colors.bg.surface,
+    color: colors.text.primary,
     ":focus": {
-      borderColor: colors.accentPrimary,
-      boxShadow: `0 0 0 2px ${colors.accentPrimarySubtle}`,
+      borderColor: colors.brand.primary.main,
+      boxShadow: `0 0 0 2px ${colors.brand.primary.subtle}`,
     },
   },
   filled: {
     borderColor: "transparent",
-    backgroundColor: colors.bgSubtle,
-    color: colors.textPrimary,
+    backgroundColor: colors.bg.subtle,
+    color: colors.text.primary,
     ":focus": {
-      backgroundColor: colors.bgSurface,
-      boxShadow: `0 0 0 2px ${colors.accentPrimarySubtle}`,
+      backgroundColor: colors.bg.surface,
+      boxShadow: `0 0 0 2px ${colors.brand.primary.subtle}`,
     },
   },
 });
 
 export const size = styleVariants({
-  small: {
-    padding: `${spacing.xs} ${spacing.sm}`,
+  xs: {
+    height: "28px",
+    paddingInline: spacing.xs,
+    fontSize: typography.fontSizes.xs,
+  },
+  sm: {
+    height: "32px",
+    paddingInline: spacing.sm,
     fontSize: typography.fontSizes.sm,
   },
-  middle: {
-    padding: `${spacing.sm} ${spacing.md}`,
+  md: {
+    height: "40px",
+    paddingInline: spacing.md,
+    fontSize: typography.fontSizes.sm,
+  },
+  lg: {
+    height: "48px",
+    paddingInline: spacing.md,
     fontSize: typography.fontSizes.md,
   },
-  large: {
-    padding: `${spacing.md} ${spacing.lg}`,
-    fontSize: typography.fontSizes.lg,
+  xl: {
+    height: "56px",
+    paddingInline: spacing.lg,
+    fontSize: typography.fontSizes.md,
   },
 });
 
 export const error = style({
-  borderColor: colors.accentDanger,
+  borderColor: colors.brand.danger.main,
   ":focus": {
-    borderColor: colors.accentDanger,
-    boxShadow: `0 0 0 2px ${colors.accentDangerSubtle}`,
+    borderColor: colors.brand.danger.main,
+    boxShadow: `0 0 0 2px ${colors.brand.danger.subtle}`,
   },
 });

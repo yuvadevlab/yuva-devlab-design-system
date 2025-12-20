@@ -44,12 +44,12 @@ export const variant = styleVariants({
   caption: {
     fontSize: typography.fontSizes.sm,
     lineHeight: typography.lineHeights.normal,
-    color: colors.textSecondary,
+    color: colors.text.secondary,
   },
   captionError: {
     fontSize: typography.fontSizes.sm,
     lineHeight: typography.lineHeights.normal,
-    color: colors.accentDanger,
+    color: colors.brand.danger.main,
   },
   label: {
     fontSize: typography.fontSizes.sm,
@@ -57,7 +57,7 @@ export const variant = styleVariants({
     lineHeight: typography.lineHeights.tight,
     marginBottom: spacing["2xs"],
     display: "block",
-    color: colors.textPrimary,
+    color: colors.text.primary,
   },
 });
 

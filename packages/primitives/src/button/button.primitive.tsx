@@ -1,11 +1,7 @@
 import { Slot } from "@radix-ui/react-slot";
 import React from "react";
 
-export interface ButtonPrimitiveProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  asChild?: boolean;
-  loading?: boolean;
-}
+import { type ButtonPrimitiveProps } from "./button.primitive.types";
 
 export const ButtonPrimitive = React.forwardRef<
   HTMLButtonElement,

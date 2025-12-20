@@ -1,7 +1,7 @@
 import { createGlobalTheme, createThemeContract } from "@vanilla-extract/css";
 
 /**
- * Typography tokens using Google Sans-inspired font stack.
+ * Typography tokens using modern font stack.
  * Expanded scale for modern web applications.
  */
 export const typography = createThemeContract({
@@ -42,10 +42,9 @@ export const typography = createThemeContract({
 
 createGlobalTheme(":root", typography, {
   fonts: {
-    sans: '"Inter", "Google Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    sans: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     mono: '"Roboto Mono", "SF Mono", Monaco, "Cascadia Code", "Courier New", monospace',
-    display:
-      '"Inter", "Google Sans Display", -apple-system, BlinkMacSystemFont, sans-serif',
+    display: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
   },
   fontSizes: {
     xs: "0.75rem", // 12px

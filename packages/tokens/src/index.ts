@@ -10,18 +10,9 @@ export { palettes } from "./palettes.css";
 
 export {
   // Palette themes (advanced use)
-  lightPalettes,
   darkPalettes,
   // Semantic themes (primary API)
   defaultTheme,
   lightTheme,
   darkTheme,
-  // Other tokens
-  defaultSpacing,
-  defaultTypography,
-  defaultRadii,
-  defaultShadows,
-  defaultTransitions,
-  defaultBreakpoints,
-  defaultZIndex,
 } from "./themes.css";
