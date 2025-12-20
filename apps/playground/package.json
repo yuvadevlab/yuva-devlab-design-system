@@ -18,7 +18,6 @@
     "clean": "pnpm run clean:build && pnpm run clean:node_modules && pnpm run clean:turbo"
   },
   "dependencies": {
-    "@yuva-devlab/tokens": "workspace:*",
     "@yuva-devlab/ui": "workspace:*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

@@ -6,7 +6,7 @@ import { Button } from "./button";
 describe("<Button />", () => {
   it("renders children", () => {
     render(<Button>Click me</Button>);
-    // expect(screen.getByText("Click me")).toBeInTheDocument();
+    expect(screen.getByText("Click me")).toBeInTheDocument();
   });
 
   it("calls onClick when clicked", () => {
@@ -25,8 +25,8 @@ describe("<Button />", () => {
         Loading
       </Button>,
     );
-    // const button = screen.getByTestId("btn");
-    // expect(button).toBeDisabled();
-    // expect(button).toHaveAttribute("aria-busy", "true");
+    const button = screen.getByTestId("btn");
+    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute("aria-busy", "true");
   });
 });

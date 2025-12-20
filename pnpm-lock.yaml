@@ -81,6 +81,9 @@ importers:
 
   apps/playground:
     dependencies:
+      '@yuva-devlab/colors':
+        specifier: workspace:*
+        version: link:../../packages/colors
       '@yuva-devlab/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
@@ -149,6 +152,24 @@ importers:
       vite:
         specifier: ^7.2.4
         version: 7.2.4(@types/node@24.10.1)(jiti@2.6.1)(yaml@2.8.1)
+
+  packages/colors:
+    devDependencies:
+      '@yuva-devlab/eslint-config':
+        specifier: workspace:*
+        version: link:../config/eslint-config
+      '@yuva-devlab/prettier-config':
+        specifier: workspace:*
+        version: link:../config/prettier-config
+      '@yuva-devlab/typescript-config':
+        specifier: workspace:*
+        version: link:../config/typescript-config
+      vite:
+        specifier: ^7.2.4
+        version: 7.2.4(@types/node@24.10.1)(jiti@2.6.1)(yaml@2.8.1)
+      vite-plugin-dts:
+        specifier: ^4.5.4
+        version: 4.5.4(@types/node@24.10.1)(rollup@4.53.3)(typescript@5.9.3)(vite@7.2.4(@types/node@24.10.1)(jiti@2.6.1)(yaml@2.8.1))
 
   packages/config/eslint-config:
     dependencies:
@@ -280,6 +301,9 @@ importers:
       '@vanilla-extract/css':
         specifier: ^1.17.4
         version: 1.17.4
+      '@yuva-devlab/colors':
+        specifier: workspace:*
+        version: link:../colors
       '@yuva-devlab/primitives':
         specifier: workspace:*
         version: link:../primitives

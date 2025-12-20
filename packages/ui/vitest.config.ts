@@ -1,9 +1,14 @@
-import { defineConfig } from "vitest/config";
+import { defineConfig, mergeConfig } from "vitest/config";
 
-export default defineConfig({
-  test: {
-    environment: "jsdom",
-    setupFiles: ["./test/setup.ts"],
-    globals: true,
-  },
-});
+import viteConfig from "./vite.config";
+
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    test: {
+      environment: "jsdom",
+      setupFiles: ["./test/setup.ts"],
+      globals: true,
+    },
+  }),
+);

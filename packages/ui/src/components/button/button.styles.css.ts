@@ -58,16 +58,16 @@ export const variant = styleVariants({
     },
   },
   primary: {
-    backgroundColor: colors.accentPrimary,
-    color: colors.textOnPrimary,
-    borderColor: colors.accentPrimary,
+    backgroundColor: "var(--yd-color-accent-primary)",
+    color: "var(--yd-color-text-on-primary)",
+    borderColor: "var(--yd-color-accent-primary)",
     ":hover": {
-      backgroundColor: colors.accentPrimaryHover,
-      borderColor: colors.accentPrimaryHover,
+      backgroundColor: "var(--yd-color-accent-primary-hover)",
+      borderColor: "var(--yd-color-accent-primary-hover)",
     },
     ":active": {
-      backgroundColor: colors.accentPrimaryActive,
-      borderColor: colors.accentPrimaryActive,
+      backgroundColor: "var(--yd-color-accent-primary-active)",
+      borderColor: "var(--yd-color-accent-primary-active)",
     },
   },
   ghost: {
@@ -84,26 +84,26 @@ export const variant = styleVariants({
   },
   link: {
     backgroundColor: "transparent",
-    color: colors.accentPrimary,
+    color: "var(--yd-color-accent-primary)",
     borderColor: "transparent",
     paddingInline: 0,
     paddingBlock: 0,
     height: "auto",
     ":hover": {
       textDecoration: "underline",
-      color: colors.accentPrimaryHover,
+      color: "var(--yd-color-accent-primary-hover)",
     },
   },
 });
 
 // Modifier styles
 export const danger = style({
-  backgroundColor: colors.accentDanger,
-  borderColor: colors.accentDanger,
-  color: colors.textOnPrimary,
+  backgroundColor: "var(--yd-color-accent-danger)",
+  borderColor: "var(--yd-color-accent-danger)",
+  color: "var(--yd-color-text-on-primary)",
   ":hover": {
-    backgroundColor: colors.accentDangerHover,
-    borderColor: colors.accentDangerHover,
+    backgroundColor: "var(--yd-color-accent-danger-hover)",
+    borderColor: "var(--yd-color-accent-danger-hover)",
   },
 });
 

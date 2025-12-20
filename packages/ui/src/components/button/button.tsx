@@ -24,6 +24,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         loading={loading}
         disabled={disabled}
+        aria-busy={loading}
         className={clsx(
           styles.base,
           styles.size[size],

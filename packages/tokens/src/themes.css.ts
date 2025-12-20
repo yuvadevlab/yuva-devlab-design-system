@@ -1,4 +1,4 @@
-import { createTheme } from "@vanilla-extract/css";
+import { createGlobalTheme, createTheme } from "@vanilla-extract/css";
 
 import { breakpoints } from "./breakpoints.css";
 import { colors } from "./colors.css";
@@ -11,9 +11,16 @@ import { typography } from "./typography.css";
 import { zIndex } from "./zindex.css";
 
 /**
- * Light Theme Palettes
+ * Light Theme Palettes (Internal usage)
+ * We keep this as scoped classes if needed, or global.
+ * For now let's keep palettes as scoped or maybe just regular objects if not used directly for styling?
+ * Actually palettes are used by themeUtils logic which was deleted.
+ * But they are implementation details of the theme.
+ * Let's keep them as createGlobalTheme for simplicity if they are contracts?
+ * palettes.css is createThemeContract? Assuming yes.
  */
-export const lightPalettes = createTheme(palettes, {
+// Applying palettes globally
+createGlobalTheme(":root", palettes, {
   primary: {
     0: "#000000",
     10: "#001a41",
@@ -106,9 +113,12 @@ export const lightPalettes = createTheme(palettes, {
   },
 });
 
+export const lightPalettes = "light-palettes"; // Placeholder for API compat if needed
+
 /**
  * Dark Theme Palettes
- * Same palette values, but semantic tokens will map to different tones
+ * (Keeping as createTheme because we might want to toggle this class on body)
+ * IF user wants dark mode helper, they add this class.
  */
 export const darkPalettes = createTheme(palettes, {
   // Dark theme uses the same palette values
@@ -216,7 +226,7 @@ export const darkPalettes = createTheme(palettes, {
  * Light Theme - Semantic Colors
  * Maps semantic tokens to appropriate palette tones
  */
-export const lightTheme = createTheme(colors, {
+createGlobalTheme(":root", colors, {
   // Brand / Primary
   accentPrimary: "#1a73e8", // primary[40]
   accentPrimaryHover: "#004494", // primary[30]
@@ -284,9 +294,12 @@ export const lightTheme = createTheme(colors, {
   overlay: "rgba(28, 27, 31, 0.32)", // neutral[10] with opacity
 });
 
+export const lightTheme = "light-theme"; // Placeholder
+
 /**
  * Dark Theme - Semantic Colors
  * Maps semantic tokens to appropriate palette tones for dark mode
+ * Kept as scoped class for manual toggling if needed
  */
 export const darkTheme = createTheme(colors, {
   // Brand / Primary - Lighter tones for dark backgrounds
@@ -363,14 +376,14 @@ export const defaultTheme = lightTheme;
 
 /**
  * ============================================================================
- * OTHER TOKEN THEMES
+ * OTHER TOKEN THEMES (Global Defaults)
  * ============================================================================
  */
 
 /**
  * Spacing scale based on 4px base unit
  */
-export const defaultSpacing = createTheme(spacing, {
+createGlobalTheme(":root", spacing, {
   "2xs": "2px",
   xs: "4px",
   sm: "8px",
@@ -382,11 +395,12 @@ export const defaultSpacing = createTheme(spacing, {
   "4xl": "64px",
   "5xl": "96px",
 });
+export const defaultSpacing = "default-spacing";
 
 /**
  * Typography using Google Sans-inspired font stack
  */
-export const defaultTypography = createTheme(typography, {
+createGlobalTheme(":root", typography, {
   fonts: {
     sans: '"Inter", "Google Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     mono: '"Roboto Mono", "SF Mono", Monaco, "Cascadia Code", "Courier New", monospace',
@@ -422,11 +436,12 @@ export const defaultTypography = createTheme(typography, {
     wide: "0.025em",
   },
 });
+export const defaultTypography = "default-typography";
 
 /**
  * Border radius for modern rounded aesthetic
  */
-export const defaultRadii = createTheme(radii, {
+createGlobalTheme(":root", radii, {
   none: "0",
   xs: "2px",
   sm: "4px",
@@ -437,11 +452,12 @@ export const defaultRadii = createTheme(radii, {
   "3xl": "24px",
   full: "9999px",
 });
+export const defaultRadii = "default-radii";
 
 /**
  * Shadow tokens for elevation
  */
-export const defaultShadows = createTheme(shadows, {
+createGlobalTheme(":root", shadows, {
   none: "none",
   xs: "0 1px 2px 0 rgba(60, 64, 67, 0.15)",
   sm: "0 1px 3px 0 rgba(60, 64, 67, 0.15), 0 1px 2px 0 rgba(60, 64, 67, 0.10)",
@@ -452,11 +468,12 @@ export const defaultShadows = createTheme(shadows, {
   inner: "inset 0 2px 4px 0 rgba(60, 64, 67, 0.10)",
   focus: "0 0 0 3px rgba(26, 115, 232, 0.2)",
 });
+export const defaultShadows = "default-shadows";
 
 /**
  * Motion system
  */
-export const defaultTransitions = createTheme(transitions, {
+createGlobalTheme(":root", transitions, {
   duration: {
     instant: "0ms",
     fast: "100ms",
@@ -472,11 +489,12 @@ export const defaultTransitions = createTheme(transitions, {
     linear: "linear",
   },
 });
+export const defaultTransitions = "default-transitions";
 
 /**
  * Responsive breakpoints (mobile-first)
  */
-export const defaultBreakpoints = createTheme(breakpoints, {
+createGlobalTheme(":root", breakpoints, {
   xs: "0px",
   sm: "640px",
   md: "768px",
@@ -484,11 +502,12 @@ export const defaultBreakpoints = createTheme(breakpoints, {
   xl: "1280px",
   "2xl": "1536px",
 });
+export const defaultBreakpoints = "default-breakpoints";
 
 /**
  * Z-index layering system
  */
-export const defaultZIndex = createTheme(zIndex, {
+createGlobalTheme(":root", zIndex, {
   base: "0",
   dropdown: "1000",
   sticky: "1100",
@@ -499,3 +518,4 @@ export const defaultZIndex = createTheme(zIndex, {
   tooltip: "1600",
   toast: "1700",
 });
+export const defaultZIndex = "default-zindex";
