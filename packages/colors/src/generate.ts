@@ -116,7 +116,7 @@ export const generate = (
     theme === "light" ? LIGHT_LIGHTNESS_MAP : DARK_LIGHTNESS_MAP;
 
   // Step 3: Generate all 10 shades
-  const palette = lightnessMap.map((targetLightness, index) => {
+  const palette = lightnessMap.map((targetLightness) => {
     // Adjust saturation based on target lightness
     const adjustedSaturation = adjustSaturation(hsl.s, targetLightness);
 

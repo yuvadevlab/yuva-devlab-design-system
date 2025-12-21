@@ -55,13 +55,13 @@ export const hexToRgb = (hex: string): RGB => {
  */
 export const rgbToHsl = ({ r, g, b }: RGB): HSL => {
   // Step 1: Normalize to 0-1 range
-  r /= 255;
-  g /= 255;
-  b /= 255;
+  const nr = r / 255;
+  const ng = g / 255;
+  const nb = b / 255;
 
   // Step 2: Find max and min
-  const max = Math.max(r, g, b);
-  const min = Math.min(r, g, b);
+  const max = Math.max(nr, ng, nb);
+  const min = Math.min(nr, ng, nb);
 
   let h = 0;
   let s = 0;
@@ -78,14 +78,14 @@ export const rgbToHsl = ({ r, g, b }: RGB): HSL => {
 
     // Hue depends on which channel is dominant
     switch (max) {
-      case r:
-        h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+      case nr:
+        h = ((ng - nb) / d + (ng < nb ? 6 : 0)) / 6;
         break;
-      case g:
-        h = ((b - r) / d + 2) / 6;
+      case ng:
+        h = ((nb - nr) / d + 2) / 6;
         break;
-      case b:
-        h = ((r - g) / d + 4) / 6;
+      case nb:
+        h = ((nr - ng) / d + 4) / 6;
         break;
     }
   }
@@ -105,41 +105,56 @@ export const rgbToHsl = ({ r, g, b }: RGB): HSL => {
  */
 export const hslToRgb = ({ h, s, l }: HSL): RGB => {
   // Normalize to 0-1 range
-  h /= 360;
-  s /= 100;
-  l /= 100;
+  const nh = h / 360;
+  const ns = s / 100;
+  const nl = l / 100;
 
-  let r: number, g: number, b: number;
+  let rv: number, gv: number, bv: number;
 
-  if (s === 0) {
+  if (ns === 0) {
     // Achromatic (gray) - all channels equal
-    r = g = b = l;
+    rv = gv = bv = nl;
   } else {
     /**
      * Helper function: converts hue to RGB channel value
      * This is the mathematical formula for HSL → RGB
      */
-    const hue2rgb = (p: number, q: number, t: number): number => {
-      if (t < 0) t += 1;
-      if (t > 1) t -= 1;
-      if (t < 1 / 6) return p + (q - p) * 6 * t;
-      if (t < 1 / 2) return q;
-      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-      return p;
+    const hue2rgb = (
+      pValue: number,
+      qValue: number,
+      tValue: number,
+    ): number => {
+      let t = tValue;
+      if (t < 0) {
+        t += 1;
+      }
+      if (t > 1) {
+        t -= 1;
+      }
+      if (t < 1 / 6) {
+        return pValue + (qValue - pValue) * 6 * t;
+      }
+      if (t < 1 / 2) {
+        return qValue;
+      }
+      if (t < 2 / 3) {
+        return pValue + (qValue - pValue) * (2 / 3 - t) * 6;
+      }
+      return pValue;
     };
 
-    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-    const p = 2 * l - q;
+    const q = nl < 0.5 ? nl * (1 + ns) : nl + ns - nl * ns;
+    const p = 2 * nl - q;
 
-    r = hue2rgb(p, q, h + 1 / 3);
-    g = hue2rgb(p, q, h);
-    b = hue2rgb(p, q, h - 1 / 3);
+    rv = hue2rgb(p, q, nh + 1 / 3);
+    gv = hue2rgb(p, q, nh);
+    bv = hue2rgb(p, q, nh - 1 / 3);
   }
 
   return {
-    r: Math.round(r * 255),
-    g: Math.round(g * 255),
-    b: Math.round(b * 255),
+    r: Math.round(rv * 255),
+    g: Math.round(gv * 255),
+    b: Math.round(bv * 255),
   };
 };
 
@@ -150,13 +165,10 @@ export const hslToRgb = ({ h, s, l }: HSL): RGB => {
  * Example: { r: 255, g: 0, b: 0 } → "#ff0000"
  */
 export const rgbToHex = ({ r, g, b }: RGB): string => {
-  return (
-    "#" +
-    [r, g, b]
-      .map((x) => {
-        const hex = x.toString(16); // Convert to base-16
-        return hex.padStart(2, "0"); // Ensure 2 digits (e.g., "0f" not "f")
-      })
-      .join("")
-  );
+  return `#${[r, g, b]
+    .map((x) => {
+      const hex = x.toString(16); // Convert to base-16
+      return hex.padStart(2, "0"); // Ensure 2 digits (e.g., "0f" not "f")
+    })
+    .join("")}`;
 };

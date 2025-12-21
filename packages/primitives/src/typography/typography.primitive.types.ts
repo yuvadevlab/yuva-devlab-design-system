@@ -1,5 +1,5 @@
 export interface TypographyPrimitiveProps
-  extends React.HTMLAttributes<HTMLElement> {
+  extends Omit<React.AllHTMLAttributes<HTMLElement>, "as"> {
   asChild?: boolean;
   as?: React.ElementType;
 }

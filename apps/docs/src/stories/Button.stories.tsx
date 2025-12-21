@@ -8,19 +8,42 @@ const meta: Meta<typeof Button> = {
   args: {
     children: "Button",
     variant: "default",
-    size: "middle",
+    size: "md",
+    shape: "round",
+    width: "default",
   },
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "primary", "ghost", "link"],
+      options: [
+        "default",
+        "primary",
+        "secondary",
+        "tertiary",
+        "elevated",
+        "filled",
+        "tonal",
+        "outlined",
+        "text",
+        "ghost",
+        "link",
+      ],
     },
     size: {
+      control: "select",
+      options: ["xs", "sm", "md", "lg", "xl"],
+    },
+    shape: {
       control: "inline-radio",
-      options: ["small", "middle", "large"],
+      options: ["round", "square"],
+    },
+    width: {
+      control: "inline-radio",
+      options: ["narrow", "default", "wide"],
     },
     danger: { control: "boolean" },
     block: { control: "boolean" },
+    morph: { control: "boolean" },
     loading: { control: "boolean" },
     disabled: { control: "boolean" },
   },
@@ -38,6 +61,20 @@ export const Primary: Story = {
   },
 };
 
+export const Tonal: Story = {
+  args: {
+    variant: "tonal",
+    children: "Tonal Button",
+  },
+};
+
+export const Outlined: Story = {
+  args: {
+    variant: "outlined",
+    children: "Outlined Button",
+  },
+};
+
 export const Danger: Story = {
   args: {
     variant: "primary",
@@ -51,6 +88,15 @@ export const Block: Story = {
     variant: "primary",
     block: true,
     children: "Block Button",
+  },
+};
+
+export const Morph: Story = {
+  args: {
+    variant: "filled",
+    shape: "square",
+    morph: true,
+    children: "Morph Square",
   },
 };
 

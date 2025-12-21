@@ -29,6 +29,11 @@ const config: StorybookConfig = {
             workspaceRoot,
             "primitives/src",
           ),
+          // Point the built CSS to dist to avoid ENOENT in Storybook build
+          "@yuva-devlab/tokens/tokens.css": path.resolve(
+            workspaceRoot,
+            "tokens/dist/tokens.css",
+          ),
           "@yuva-devlab/tokens": path.resolve(workspaceRoot, "tokens/src"),
         },
       },
