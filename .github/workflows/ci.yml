@@ -23,6 +23,9 @@ jobs:
           cache: "pnpm"
       - name: Install Dependencies
         run: pnpm install
+      - name: Build Configs
+        # Prettier/ESLint in subpackages need the built configs
+        run: pnpm --filter "@yuva-devlab/*-config" build
       - name: Check Formatting
         run: pnpm run format:check
       - name: Lint Source Code
@@ -40,6 +43,9 @@ jobs:
           cache: "pnpm"
       - name: Install Dependencies
         run: pnpm install
+      - name: Build Dependencies
+        # Type-checking in subpackages needs built dependencies
+        run: pnpm --filter "!playground" --filter "!docs" build
       - name: Verify Type Safety
         run: pnpm run type-check
 
@@ -56,7 +62,6 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
       - name: Run Available Tests
-        # We use turbo to selectively run tests on packages that have them defined
         run: pnpm run test
 
   build-artifacts:
@@ -89,5 +94,7 @@ jobs:
           cache: "pnpm"
       - name: Install Dependencies
         run: pnpm install
+      - name: Fetch Base Branch
+        run: git fetch origin main:main
       - name: Check for Changesets
         run: pnpm changeset status
