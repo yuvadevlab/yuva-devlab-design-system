@@ -36,6 +36,9 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
+      - name: Build Configs
+        run: pnpm --filter "@yuva-devlab/*-config" build
+
       - name: Create Release PR or Publish to npm
         id: changesets
         uses: changesets/action@v1
