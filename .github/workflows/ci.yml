@@ -1,4 +1,4 @@
-name: CI
+name: "Verified Infrastructure Pipeline"
 
 on:
   push:
@@ -6,23 +6,88 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  validate:
+  quality-gate:
+    name: "🎨 Quality Gate (Lint & Format)"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: "pnpm"
-
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pnpm install
+      - name: Check Formatting
+        run: pnpm run format:check
+      - name: Lint Source Code
+        run: pnpm run lint
 
-      - name: Validate
-        run: pnpm run validate
+  integrity-check:
+    name: "🛡️ Integrity Check (Types)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Verify Type Safety
+        run: pnpm run type-check
+
+  test-suite:
+    name: "🧪 Test Suite (Selective)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Run Available Tests
+        # We use turbo to selectively run tests on packages that have them defined
+        run: pnpm run test
+
+  build-artifacts:
+    name: "📦 Build Artifacts (Prod)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Compile Everything
+        run: pnpm run build
+
+  changeset-check:
+    name: "🏷️ Changeset Validator"
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Check for Changesets
+        run: pnpm changeset status

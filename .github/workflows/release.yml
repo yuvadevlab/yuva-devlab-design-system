@@ -1,24 +1,31 @@
-name: Release
+name: "Automated Release Orchestrator"
 
 on:
   push:
     branches:
       - main
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
 
 jobs:
   release:
-    name: Release
+    name: "📦 Release & Versioning"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -29,12 +36,14 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Create Release PR or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          # This expects you to have a script called 'release' in your root package.json
+          version: pnpm run version-packages
           publish: pnpm run release
+          title: "chore(release): version packages 🚀"
+          commit: "chore(release): version packages 🚀"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

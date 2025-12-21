@@ -35,6 +35,7 @@ export default {
         "config",
         "workspace",
         "release",
+        "infra",
       ],
     ],
     "subject-case": [2, "never", ["upper-case"]],
