@@ -81,7 +81,7 @@ jobs:
 
   changeset-check:
     name: "🏷️ Changeset Validator"
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'changeset-release/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
