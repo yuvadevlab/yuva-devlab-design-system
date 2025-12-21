@@ -81,20 +81,26 @@ jobs:
 
   changeset-check:
     name: "🏷️ Changeset Validator"
-    if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'changeset-release/')
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        if: "!startsWith(github.head_ref, 'changeset-release/')"
         with:
           fetch-depth: 0
       - uses: pnpm/action-setup@v4
+        if: "!startsWith(github.head_ref, 'changeset-release/')"
       - uses: actions/setup-node@v4
+        if: "!startsWith(github.head_ref, 'changeset-release/')"
         with:
           node-version: 22
           cache: "pnpm"
       - name: Install Dependencies
+        if: "!startsWith(github.head_ref, 'changeset-release/')"
         run: pnpm install
       - name: Fetch Base Branch
+        if: "!startsWith(github.head_ref, 'changeset-release/')"
         run: git fetch origin main:main
       - name: Check for Changesets
+        if: "!startsWith(github.head_ref, 'changeset-release/')"
         run: pnpm changeset status
