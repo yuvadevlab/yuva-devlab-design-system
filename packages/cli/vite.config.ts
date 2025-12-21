@@ -7,7 +7,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       formats: ["cjs"],
-      fileName: () => "index.js",
+      fileName: () => "index.cjs",
     },
     target: "node18",
     outDir: "dist",
