@@ -35,6 +35,7 @@
       "outputs": []
     },
     "test": {
+      "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "vitest.config.ts"],
       "outputs": ["coverage/**", ".vitest/**"]
     },
