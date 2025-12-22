@@ -1,5 +1,11 @@
 # @yuva-devlab/typescript-config
 
+## 0.1.1
+
+### Patch Changes
+
+- 2cc8dcf: Complete documentation rewrite with comprehensive examples and API reference
+
 ## 0.1.0
 
 ### Minor Changes
