@@ -1,5 +1,16 @@
 # @yuva-devlab/ui
 
+## 0.1.1
+
+### Patch Changes
+
+- 2cc8dcf: Complete documentation rewrite with comprehensive examples and API
+  reference
+- Updated dependencies [2cc8dcf]
+  - @yuva-devlab/primitives@0.1.1
+  - @yuva-devlab/colors@0.1.1
+  - @yuva-devlab/tokens@0.1.1
+
 ## 0.1.0
 
 ### Minor Changes
