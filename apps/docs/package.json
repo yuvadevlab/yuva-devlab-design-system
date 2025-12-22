@@ -32,7 +32,7 @@
     "@yuva-devlab/eslint-config": "workspace:*",
     "@yuva-devlab/prettier-config": "workspace:*",
     "@yuva-devlab/typescript-config": "workspace:*",
-    "storybook": "^10.0.8",
+    "storybook": "^10.1.10",
     "vite": "^7.2.4"
   }
 }
