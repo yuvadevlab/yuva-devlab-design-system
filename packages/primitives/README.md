@@ -1,63 +1,174 @@
 # 📦 @yuva-devlab/primitives
 
-Headless, behavior-only primitives used by `@yuva-devlab/ui`.
+[![npm version](https://img.shields.io/npm/v/@yuva-devlab/primitives.svg)](https://www.npmjs.com/package/@yuva-devlab/primitives)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-These are **NOT** styled. They provide the core interaction logic, accessibility
-(A11y), and rendering contracts for our component library.
+> Headless, unstyled React primitives providing core component logic,
+> accessibility, and interaction patterns.
 
----
+## Overview
 
-## 🛠 Tech Stack
+This package provides the behavioral foundation for `@yuva-devlab/ui`. Each
+primitive is:
 
-- **Radix UI**: Leveraged for complex, high-accessibility primitives (e.g.,
-  Select, Switch).
-- **Polymorphism**: Built with `asChild` support via `@radix-ui/react-slot`.
-- **TypeScript**: Full type safety for all primitive props.
+- **Unstyled** - Pure logic, no visual styling
+- **Accessible** - ARIA-compliant with keyboard navigation
+- **Polymorphic** - Supports `as` and `asChild` props via Radix Slot
+- **Type-Safe** - Full TypeScript support
+- **Composable** - Build complex components from simple primitives
 
----
-
-## 📁 Folder Structure
+## Installation
 
 ```bash
-packages/primitives/
-├── src/
-│   ├── box/            # Polymorphic layout base
-│   ├── button/         # Accessible button logic
-│   ├── input/          # Base input logic
-│   ├── typography/     # Text rendering logic
-│   └── index.ts        # Entry point
-└── README.md
+npm install @yuva-devlab/primitives
 ```
 
----
+### Peer Dependencies
 
-## Example: Box Primitive
-
-Our `BoxPrimitive` serves as the foundation for the entire layout system,
-handling polymorphic `as` and `asChild` props.
-
-```tsx
-import { Slot } from "@radix-ui/react-slot";
-
-export const BoxPrimitive = React.forwardRef<HTMLElement, BoxPrimitiveProps>(
-  ({ asChild, as: Component = "div", ...props }, ref) => {
-    const Comp = asChild ? Slot : Component;
-    return (
-      <Comp
-        ref={ref}
-        {...props}
-      />
-    );
-  },
-);
+```bash
+npm install react@^19.2.0 react-dom@^19.2.0
 ```
 
----
+## Available Primitives
 
-## Usage in UI Package
+### Core Primitives
+
+- **BoxPrimitive** - Polymorphic container base for all layout components
+- **ButtonPrimitive** - Accessible button with keyboard navigation
+- **InputPrimitive** - Form input with label association
+- **TypographyPrimitive** - Polymorphic text rendering
+
+### Coming Soon
+
+- SelectPrimitive (Radix UI based)
+- SwitchPrimitive (Radix UI based)
+- CheckboxPrimitive (Radix UI based)
+- RadioPrimitive (Radix UI based)
+
+## Usage
+
+### BoxPrimitive
+
+The foundation for all layout components, supporting polymorphism:
 
 ```tsx
 import { BoxPrimitive } from "@yuva-devlab/primitives";
 
-// In @yuva-devlab/ui, we wrap these with Vanilla Extract styles
+// Render as different elements
+<BoxPrimitive as="div">Default div</BoxPrimitive>
+<BoxPrimitive as="section">Semantic section</BoxPrimitive>
+<BoxPrimitive as="article">Article element</BoxPrimitive>
+
+// Use with asChild for composition
+<BoxPrimitive asChild>
+  <a href="/home">Link wrapper</a>
+</BoxPrimitive>
 ```
+
+### ButtonPrimitive
+
+Accessible button with proper ARIA attributes:
+
+```tsx
+import { ButtonPrimitive } from "@yuva-devlab/primitives";
+
+<ButtonPrimitive
+  type="button"
+  disabled={false}
+  onClick={() => console.log("clicked")}
+>
+  Click Me
+</ButtonPrimitive>
+
+// Polymorphic usage
+<ButtonPrimitive as="a" href="/submit">
+  Submit Link
+</ButtonPrimitive>
+```
+
+### InputPrimitive
+
+Form input with label association:
+
+```tsx
+import { InputPrimitive } from "@yuva-devlab/primitives";
+
+<InputPrimitive
+  id="email"
+  type="email"
+  placeholder="you@example.com"
+  required
+  aria-label="Email address"
+/>;
+```
+
+### TypographyPrimitive
+
+Polymorphic text component:
+
+```tsx
+import { TypographyPrimitive } from "@yuva-devlab/primitives";
+
+// Render as different heading levels
+<TypographyPrimitive as="h1">Main Title</TypographyPrimitive>
+<TypographyPrimitive as="h2">Subtitle</TypographyPrimitive>
+<TypographyPrimitive as="p">Paragraph text</TypographyPrimitive>
+<TypographyPrimitive as="span">Inline text</TypographyPrimitive>
+```
+
+## Building Custom Components
+
+Primitives are designed to be wrapped with styling:
+
+```tsx
+import { ButtonPrimitive } from "@yuva-devlab/primitives";
+import { style } from "@vanilla-extract/css";
+
+const buttonStyle = style({
+  padding: "12px 24px",
+  borderRadius: "8px",
+  backgroundColor: "#007bff",
+  color: "white",
+});
+
+export function CustomButton(props) {
+  return (
+    <ButtonPrimitive
+      {...props}
+      className={buttonStyle}
+    />
+  );
+}
+```
+
+## Architecture
+
+```
+@yuva-devlab/primitives (Behavior + A11y)
+           ↓
+@yuva-devlab/ui (Styling + Tokens)
+           ↓
+    Your Application
+```
+
+## Development
+
+```bash
+# Build primitives
+pnpm --filter @yuva-devlab/primitives build
+
+# Type check
+pnpm --filter @yuva-devlab/primitives type-check
+
+# Lint
+pnpm --filter @yuva-devlab/primitives lint
+```
+
+## Related Packages
+
+- [@yuva-devlab/ui](../ui) - Styled components built on these primitives
+- [@yuva-devlab/tokens](../tokens) - Design system tokens
+
+## License
+
+MIT © Yuva Devlab

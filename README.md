@@ -1,5 +1,8 @@
 # 🧩 yuva-devlab-workspace
 
+[![npm version](https://img.shields.io/npm/v/@yuva-devlab/ui.svg)](https://www.npmjs.com/package/@yuva-devlab/ui)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 A fully–modular, scalable monorepo powering the **Yuva Devlab UI Library** — including tokens, primitives, styled components, theming, CLI tools, docs, and sandbox apps.
 
 This workspace is built with:
@@ -16,7 +19,18 @@ This workspace is built with:
 
 ---
 
-## 📁 Project Structure
+## � Table of Contents
+
+- [Project Structure](#-project-structure)
+- [Workspace Scripts](#-workspace-scripts)
+- [Development Flow](#-development-flow)
+- [Release Workflow](#-release-workflow)
+- [Package Documentation](#-package-documentation)
+- [License](#-license)
+
+---
+
+## �📁 Project Structure
 
 ```bash
 yuva-devlab-workspace/
@@ -82,6 +96,51 @@ These commands use **Turborepo** to execute tasks across the entire monorepo wit
 2. **Primitives**: Create behavior-only logic in `packages/primitives`.
 3. **UI Components**: Build the final styled components in `packages/ui`.
 4. **Verification**: Preview changes instantly in `apps/playground` or document in `apps/docs`.
+
+---
+
+## 🚀 Release Workflow
+
+This monorepo uses **Changesets** for automated versioning and publishing, with a fully automated CI/CD pipeline.
+
+### How Releases Work
+
+1. **Make Changes**: Develop your feature/fix in a branch
+2. **Create Changeset**: Run `pnpm changeset` and describe your changes
+3. **Open PR**: The CI will validate that a changeset exists
+4. **Merge to Main**: Triggers the "Automated Release Orchestrator"
+5. **Version PR Created**: Bot creates a PR with version bumps and changelogs
+6. **Merge Version PR**: Automatically publishes to npm and creates GitHub releases
+
+### Developer Commands
+
+| Command                 | Description                                     |
+| :---------------------- | :---------------------------------------------- |
+| `pnpm changeset`        | Create a new changeset (interactive)            |
+| `pnpm version-packages` | Bump versions and update changelogs (automated) |
+| `pnpm release`          | Build and publish to npm (automated in CI)      |
+
+### Changeset Types
+
+- **`patch`**: Bug fixes, documentation updates (0.1.0 → 0.1.1)
+- **`minor`**: New features, non-breaking changes (0.1.0 → 0.2.0)
+- **`major`**: Breaking changes (0.1.0 → 1.0.0)
+
+### Independent Versioning
+
+Each package is versioned independently. For example:
+
+- Updating only `@yuva-devlab/ui` → Only that package gets a new version
+- Updating `@yuva-devlab/tokens` → All dependent packages get patch bumps
+- Tags are created per package: `@yuva-devlab/ui@0.2.0`, `@yuva-devlab/colors@0.1.0`
+
+### CI/CD Pipeline
+
+- **Quality Gate**: Linting and formatting checks
+- **Integrity Check**: TypeScript type safety
+- **Test Suite**: Unit tests (where available)
+- **Build Artifacts**: Production compilation
+- **Changeset Validator**: Ensures changesets exist for PRs (except release branches)
 
 ---
 
