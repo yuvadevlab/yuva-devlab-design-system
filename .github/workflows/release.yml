@@ -1,4 +1,4 @@
-name: "Automated Release Orchestrator"
+name: "Release"
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
     name: "📦 Release & Versioning"
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -27,19 +27,19 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: "pnpm"
 
-      - name: Install Dependencies
+      - name: Install
         run: pnpm install
 
       - name: Build Configs
         run: pnpm --filter "@yuva-devlab/*-config" build
 
-      - name: Create Release PR or Publish to npm
+      - name: Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
