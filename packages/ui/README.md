@@ -1,50 +1,117 @@
 # 📦 @yuva-devlab/ui
 
-A fully-typed, themeable, **Vanilla Extract** powered component library built on
-top of:
+[![npm version](https://img.shields.io/npm/v/@yuva-devlab/ui.svg)](https://www.npmjs.com/package/@yuva-devlab/ui)
+[![npm downloads](https://img.shields.io/npm/dm/@yuva-devlab/ui.svg)](https://www.npmjs.com/package/@yuva-devlab/ui)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-- `@yuva-devlab/tokens` (design tokens)
-- `@yuva-devlab/primitives` (headless logic)
-- Full TypeScript support
+> A production-ready, fully-typed React component library built with Vanilla
+> Extract, featuring a natural design system and comprehensive accessibility
+> support.
 
-This is the main **consumer-facing** UI library.
+## Features
 
----
+- 🎨 **Natural Design System** - Organic color palettes inspired by Material
+  Design 3
+- 🔒 **Type-Safe** - Full TypeScript support with comprehensive type definitions
+- 🎭 **Zero-Runtime CSS** - Vanilla Extract compiles styles at build time
+- ♿ **Accessible** - Built on Radix UI primitives with ARIA compliance
+- 🧩 **Polymorphic** - Components support `as` prop for semantic flexibility
+- 🎯 **Tree-Shakeable** - Import only what you need
+- 📦 **Monorepo Architecture** - Clean separation of tokens, primitives, and
+  components
 
-## ✨ Features
-
-- **Atomic Foundation**: Components like Button, Input, and Typography.
-- **Layout System**: High-level primitives for `Box`, `Flex`, `Grid`, and
-  `Stack`.
-- **Vanilla Extract**: Type-safe, zero-runtime CSS with deep token integration.
-- **Natural Theme**: Organic-inspired aesthetics with "MD3" influence.
-- **Polymorphism**: Components support the `as` prop for semantic flexibility.
-
----
-
-## 📁 Folder Structure
+## Installation
 
 ```bash
-packages/ui/
-├── src/
-│   ├── components/
-│   │   ├── button/
-│   │   │   ├── button.tsx
-│   │   │   ├── button.styles.css.ts # Vanilla Extract styles
-│   │   │   ├── button.types.ts
-│   │   │   └── index.ts
-│   │   ├── layout/         # Box, Flex, Grid, Stack, Container
-│   │   └── ...
-│   └── index.ts
-└── README.md
+npm install @yuva-devlab/ui
 ```
 
----
+### Peer Dependencies
 
-## 🎨 Layout System
+```bash
+npm install react@^19.2.0 react-dom@^19.2.0
+```
 
-We provide a specialized set of components to handle all structural needs
-without custom CSS:
+## Quick Start
+
+```tsx
+import { Button, Input, Stack, Container } from "@yuva-devlab/ui";
+import "@yuva-devlab/ui/styles.css";
+
+function App() {
+  return (
+    <Container size="lg">
+      <Stack gap="md">
+        <Input
+          label="Email"
+          placeholder="you@example.com"
+          type="email"
+        />
+        <Button
+          variant="primary"
+          size="md"
+        >
+          Sign In
+        </Button>
+      </Stack>
+    </Container>
+  );
+}
+```
+
+## Available Components
+
+### Form Components
+
+- **Button** - Primary, secondary, tertiary variants with loading states
+- **Input** - Text input with label, error states, and helper text
+
+### Typography
+
+- **Typography** - Polymorphic text component supporting h1-h6, p, span, etc.
+
+### Layout Components
+
+- **Box** - Polymorphic container with spacing utilities
+- **Flex** - Flexbox layout with alignment and gap props
+- **Grid** - CSS Grid layout with responsive columns
+- **Stack** - Vertical/horizontal stacking with consistent spacing
+- **Container** - Responsive max-width wrapper (sm, md, lg, xl, 2xl)
+
+### Coming Soon
+
+- Select (Radix UI based)
+- Switch (Radix UI based)
+- Checkbox (Radix UI based)
+- Radio (Radix UI based)
+- InputNumber
+
+## Component Examples
+
+### Button
+
+```tsx
+import { Button } from "@yuva-devlab/ui";
+
+// Variants
+<Button variant="primary">Primary Action</Button>
+<Button variant="secondary">Secondary Action</Button>
+<Button variant="tertiary">Tertiary Action</Button>
+
+// Sizes
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+
+// States
+<Button loading>Loading...</Button>
+<Button disabled>Disabled</Button>
+
+// Polymorphic
+<Button as="a" href="/home">Link Button</Button>
+```
+
+### Layout System
 
 ```tsx
 import { Container, Stack, Flex, Box } from "@yuva-devlab/ui";
@@ -55,24 +122,67 @@ import { Container, Stack, Flex, Box } from "@yuva-devlab/ui";
       align="center"
       justify="between"
     >
-      <Box p="md">Brand</Box>
-      <Box>Menu</Box>
+      <Box p="md">Logo</Box>
+      <Box>Navigation</Box>
     </Flex>
+
+    <Grid
+      cols={{ base: 1, md: 2, lg: 3 }}
+      gap="md"
+    >
+      <Box p="lg">Card 1</Box>
+      <Box p="lg">Card 2</Box>
+      <Box p="lg">Card 3</Box>
+    </Grid>
   </Stack>
 </Container>;
 ```
 
----
+## Styling
 
-## 🧪 Testing
+This library uses Vanilla Extract for type-safe, zero-runtime CSS. All styles
+are compiled at build time.
 
-Run tests across the UI library:
+### Importing Styles
 
-```bash
-pnpm --filter @yuva-devlab/ui test
+```tsx
+// Import global styles once in your app entry point
+import "@yuva-devlab/ui/styles.css";
 ```
 
-## 📚 Documentation
+### Theming
 
-UI components are documented in `apps/docs` using Storybook and can be previewed
-in real-time in `apps/playground`.
+The library includes a natural theme by default. Custom theming support coming
+soon.
+
+## Development
+
+```bash
+# Install dependencies
+pnpm install
+
+# Build the library
+pnpm --filter @yuva-devlab/ui build
+
+# Run tests
+pnpm --filter @yuva-devlab/ui test
+
+# Type check
+pnpm --filter @yuva-devlab/ui type-check
+```
+
+## Documentation
+
+- **Storybook**: Run `pnpm dev:docs` to view interactive component documentation
+- **Playground**: Run `pnpm dev:playground` to test components in a live
+  environment
+
+## Related Packages
+
+- [@yuva-devlab/primitives](../primitives) - Headless component logic
+- [@yuva-devlab/tokens](../tokens) - Design system tokens
+- [@yuva-devlab/colors](../colors) - Color palette generation
+
+## License
+
+MIT © Yuva Devlab
