@@ -13,12 +13,7 @@
     },
     "lint": {
       "dependsOn": ["^build"],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".eslintrc.js",
-        "eslint.config.js",
-        ".eslintignore"
-      ],
+      "inputs": ["$TURBO_DEFAULT$", "eslint.config.js", ".eslintignore"],
       "outputs": []
     },
     "lint:fix": {
@@ -27,21 +22,11 @@
       "outputs": []
     },
     "format": {
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        "prettier.config.js",
-        ".prettierrc",
-        ".prettierignore"
-      ],
+      "inputs": ["$TURBO_DEFAULT$", "prettier.config.js", ".prettierignore"],
       "outputs": []
     },
     "format:check": {
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        "prettier.config.js",
-        ".prettierrc",
-        ".prettierignore"
-      ],
+      "inputs": ["$TURBO_DEFAULT$", "prettier.config.js", ".prettierignore"],
       "outputs": []
     },
     "type-check": {
@@ -51,7 +36,7 @@
     },
     "test": {
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", "vitest.config.ts", "jest.config.js"],
+      "inputs": ["$TURBO_DEFAULT$", "vitest.config.ts"],
       "outputs": ["coverage/**", ".vitest/**"]
     },
     "test:watch": {
@@ -66,25 +51,6 @@
     },
     "clean:node_modules": {
       "cache": false
-    },
-    "//#lint": {
-      "dependsOn": ["^build"],
-      "inputs": [
-        "{workspaces}/**/*.ts",
-        "{workspaces}/**/*.tsx",
-        "{workspaces}/**/*.js",
-        "{workspaces}/**/*.jsx"
-      ]
-    },
-    "//#format": {
-      "inputs": [
-        "{workspaces}/**/*.ts",
-        "{workspaces}/**/*.tsx",
-        "{workspaces}/**/*.js",
-        "{workspaces}/**/*.jsx",
-        "{workspaces}/**/*.json",
-        "{workspaces}/**/*.md"
-      ]
     }
   }
 }
