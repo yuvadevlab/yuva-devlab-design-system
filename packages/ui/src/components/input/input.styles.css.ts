@@ -1,11 +1,17 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { colors, radii, spacing, typography } from "@yuva-devlab/tokens";
+import {
+  colors,
+  radii,
+  spacing,
+  typography,
+  transitions,
+} from "@yuva-devlab/tokens";
 
 export const base = style({
   border: "1px solid",
   borderRadius: radii.sm,
   outline: "none",
-  transition: "all 0.2s ease-in-out",
+  transition: `all ${transitions.duration.normal} ${transitions.easing.standard}`,
   width: "100%",
   fontFamily: typography.fonts.sans,
   ":disabled": {
@@ -19,18 +25,25 @@ export const variant = styleVariants({
     borderColor: colors.border.default,
     backgroundColor: colors.bg.surface,
     color: colors.text.primary,
+    ":hover": {
+      borderColor: colors.border.strong,
+    },
     ":focus": {
       borderColor: colors.brand.primary.main,
-      boxShadow: `0 0 0 2px ${colors.brand.primary.subtle}`,
+      boxShadow: `0 0 0 1px ${colors.brand.primary.main}`,
     },
   },
   filled: {
     borderColor: "transparent",
     backgroundColor: colors.bg.subtle,
     color: colors.text.primary,
+    ":hover": {
+      backgroundColor: colors.bg.surfaceHover,
+    },
     ":focus": {
       backgroundColor: colors.bg.surface,
-      boxShadow: `0 0 0 2px ${colors.brand.primary.subtle}`,
+      borderColor: colors.brand.primary.main,
+      boxShadow: `0 0 0 1px ${colors.brand.primary.main}`,
     },
   },
 });
@@ -67,6 +80,6 @@ export const error = style({
   borderColor: colors.brand.danger.main,
   ":focus": {
     borderColor: colors.brand.danger.main,
-    boxShadow: `0 0 0 2px ${colors.brand.danger.subtle}`,
+    boxShadow: `0 0 0 1px ${colors.brand.danger.main}`,
   },
 });

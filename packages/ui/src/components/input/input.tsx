@@ -4,7 +4,7 @@ import React from "react";
 
 import { Typography } from "../typography";
 
-import * as styles from "./input.css";
+import * as styles from "./input.styles.css";
 import { InputProps } from "./input.types";
 
 const defaultLabelProps = {

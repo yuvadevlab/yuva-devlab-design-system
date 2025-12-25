@@ -33,7 +33,7 @@ npx yuva create component button
 # yarn
 yarn yuva create component button
 
-# pnpm (recommended for this monorepo)
+# pnpm
 pnpm exec yuva create component button
 ```
 

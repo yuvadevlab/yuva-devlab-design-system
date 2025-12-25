@@ -5,6 +5,7 @@ import {
   spacing,
   typography,
   shadows,
+  transitions,
 } from "@yuva-devlab/tokens";
 
 export const base = style({
@@ -17,8 +18,7 @@ export const base = style({
   borderWidth: 1,
   borderStyle: "solid",
   cursor: "pointer",
-  transition:
-    "all 200ms cubic-bezier(0.4, 0, 0.2, 1), border-radius 200ms cubic-bezier(0.4, 0, 0.2, 1)",
+  transition: `all ${transitions.duration.normal} ${transitions.easing.standard}, border-radius ${transitions.duration.normal} ${transitions.easing.standard}`,
   whiteSpace: "nowrap",
   outline: "none",
   position: "relative",
