@@ -20,13 +20,27 @@ primitive is:
 ## Installation
 
 ```bash
+# npm
 npm install @yuva-devlab/primitives
+
+# yarn
+yarn add @yuva-devlab/primitives
+
+# pnpm
+pnpm add @yuva-devlab/primitives
 ```
 
 ### Peer Dependencies
 
 ```bash
+# npm
 npm install react@^19.2.0 react-dom@^19.2.0
+
+# yarn
+yarn add react@^19.2.0 react-dom@^19.2.0
+
+# pnpm
+pnpm add react@^19.2.0 react-dom@^19.2.0
 ```
 
 ## Available Primitives

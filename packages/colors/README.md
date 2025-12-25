@@ -18,7 +18,14 @@
 ## Installation
 
 ```bash
+# npm
 npm install @yuva-devlab/colors
+
+# yarn
+yarn add @yuva-devlab/colors
+
+# pnpm
+pnpm add @yuva-devlab/colors
 ```
 
 ## Quick Start

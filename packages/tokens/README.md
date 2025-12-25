@@ -18,7 +18,14 @@
 ## Installation
 
 ```bash
+# npm
 npm install @yuva-devlab/tokens
+
+# yarn
+yarn add @yuva-devlab/tokens
+
+# pnpm
+pnpm add @yuva-devlab/tokens
 ```
 
 **Zero runtime dependencies** - All tokens are compiled to static CSS at build

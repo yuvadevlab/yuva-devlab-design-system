@@ -6,7 +6,7 @@
 > Official CLI tool for scaffolding components and primitives in the Yuva Devlab
 > ecosystem.
 
-## Features
+## ✨ Features
 
 - 🚀 **Component Generation** - Create fully-structured UI components with
   styles and types
@@ -15,149 +15,157 @@
 - 📁 **Smart Templates** - Pre-configured file structures following best
   practices
 - 🎯 **Monorepo Aware** - Automatically detects workspace root
-- ✅ **Naming Conventions** - Enforces consistent naming patterns
-- ⚡ **Zero Config** - Works out of the box
+- ✅ **Naming Conventions** - Enforces consistent kebab-case and PascalCase
+  patterns
+- 🔧 **Type-Safe** - Uses type aliases to avoid ESLint warnings
+- ⚡ **Zero Config** - Works out of the box in the monorepo
 
-## Installation
+## 📦 Installation
 
-### Global Installation (Recommended)
-
-```bash
-npm install -g @yuva-devlab/cli
-```
-
-Then use anywhere:
-
-```bash
-yuva create component button
-yuva create component select --kind primitive
-```
-
-### Local Installation
-
-```bash
-npm install --save-dev @yuva-devlab/cli
-```
-
-Use with npx:
-
-```bash
-npx yuva create component button
-```
-
-### Workspace Usage
+### Workspace Usage (Recommended)
 
 If you're working within the yuva-devlab monorepo:
 
 ```bash
+# npm
+npx yuva create component button
+
+# yarn
+yarn yuva create component button
+
+# pnpm (recommended for this monorepo)
 pnpm exec yuva create component button
 ```
 
-## Commands
+> **Note:** The `yuva` command is not directly available in the monorepo. You
+> must use your package manager's execution command.
 
-### Create Component
+### Global Installation
 
-Generate a new styled UI component:
+For direct `yuva` command access, install globally:
 
 ```bash
-yuva create component <name>
+# npm
+npm install -g @yuva-devlab/cli
+
+# yarn
+yarn global add @yuva-devlab/cli
+
+# pnpm
+pnpm add -g @yuva-devlab/cli
 ```
 
-**Example:**
+Then use anywhere without a package manager prefix:
 
 ```bash
+yuva create component button
+yuva create component checkbox --kind primitive
+```
+
+### Local Installation (External Projects)
+
+For use in other projects:
+
+```bash
+# npm
+npm install --save-dev @yuva-devlab/cli
+
+# yarn
+yarn add -D @yuva-devlab/cli
+
+# pnpm
+pnpm add -D @yuva-devlab/cli
+```
+
+Then use with your package manager:
+
+```bash
+# npm
+npx yuva create component button
+
+# yarn
+yarn yuva create component button
+
+# pnpm
+pnpm exec yuva create component button
+```
+
+## 🚀 Commands
+
+### `yuva create component <name>`
+
+Generate a new styled UI component.
+
+**Syntax:**
+
+```bash
+# In monorepo
+pnpm exec yuva create component <name> [options]
+
+# With global installation
+yuva create component <name> [options]
+```
+
+**Options:**
+
+- `-k, --kind <type>` - Type of component: `component` (default) or `primitive`
+
+**Examples:**
+
+```bash
+# Create a styled component (monorepo)
+pnpm exec yuva create component card
+
+# Create a primitive component (monorepo)
+pnpm exec yuva create component checkbox --kind primitive
+# or shorthand
+pnpm exec yuva create component checkbox -k primitive
+
+# With global installation
 yuva create component card
+yuva create component checkbox -k primitive
+```
+
+## 📂 Generated Structure
+
+### Styled Component
+
+```bash
+pnpm exec yuva create component card
 ```
 
 **Generates:**
 
 ```
 packages/ui/src/components/card/
-├── card.tsx                 # Component implementation
-├── card.styles.css.ts       # Vanilla Extract styles
-├── card.types.ts            # TypeScript types
-├── card.test.tsx            # Vitest tests
-└── index.ts                 # Barrel export
+├── card.tsx             # Component implementation
+├── card.styles.css.ts   # Vanilla Extract styles
+├── card.types.ts        # TypeScript type definitions
+├── card.test.tsx        # Vitest test file
+└── index.ts             # Barrel export
 ```
 
-### Create Primitive
-
-Generate a new headless primitive:
-
-```bash
-yuva create component <name> --kind primitive
-```
-
-**Example:**
-
-```bash
-yuva create component select --kind primitive
-```
-
-**Generates:**
-
-```
-packages/primitives/src/select/
-├── select.primitive.tsx     # Primitive implementation
-├── select.primitive.types.ts # TypeScript types
-└── index.ts                 # Barrel export
-```
-
-## Options
-
-| Flag     | Description                                    | Default     |
-| -------- | ---------------------------------------------- | ----------- |
-| `--kind` | Type of component (`component` or `primitive`) | `component` |
-| `--help` | Show help information                          | -           |
-
-## Examples
-
-### Creating a Button Component
-
-```bash
-yuva create component button
-```
-
-This generates a complete button component with:
-
-- React component file
-- Vanilla Extract styles
-- TypeScript type definitions
-- Test file setup
-- Barrel export
-
-### Creating a Select Primitive
-
-```bash
-yuva create component select --kind primitive
-```
-
-This generates a headless select primitive with:
-
-- Primitive logic implementation
-- Type definitions
-- Barrel export
-
-## Generated File Templates
-
-### Component Template
+**File Contents:**
 
 ```tsx
 // card.tsx
-import { forwardRef } from "react";
-import type { CardProps } from "./card.types";
-import * as styles from "./card.styles.css";
+import React from "react";
+import { CardPrimitive } from "@yuva-devlab/primitives";
+import clsx from "clsx";
 
-export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ children, ...props }, ref) => {
+import * as styles from "./card.styles.css";
+import type { CardProps } from "./card.types";
+
+export const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ className, children, ...rest }, ref) => {
     return (
-      <div
+      <CardPrimitive
         ref={ref}
-        className={styles.card}
-        {...props}
+        className={clsx(styles.base, className)}
+        {...rest}
       >
         {children}
-      </div>
+      </CardPrimitive>
     );
   },
 );
@@ -165,31 +173,125 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 Card.displayName = "Card";
 ```
 
-### Primitive Template
+```ts
+// card.types.ts
+import type { CardPrimitiveProps } from "@yuva-devlab/primitives";
+
+/**
+ * Props for Card styled component.
+ * Extends the primitive component props.
+ * Add styled-specific props below as needed.
+ */
+export type CardProps = CardPrimitiveProps & {
+  // Add styled-specific props here
+  // Example:
+  // variant?: "primary" | "secondary";
+  // size?: "sm" | "md" | "lg";
+};
+```
+
+```ts
+// card.styles.css.ts
+import { style } from "@vanilla-extract/css";
+import { colors, spacing } from "@yuva-devlab/tokens";
+
+export const base = style({
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: spacing.md,
+  borderRadius: "8px",
+  borderWidth: 1,
+  borderStyle: "solid",
+  borderColor: colors.border.default,
+  backgroundColor: colors.bg.surface,
+  color: colors.text.primary,
+  cursor: "pointer",
+});
+```
+
+### Primitive Component
+
+```bash
+pnpm exec yuva create component checkbox --kind primitive
+```
+
+**Generates:**
+
+```
+packages/primitives/src/checkbox/
+├── checkbox.primitive.tsx        # Primitive implementation
+├── checkbox.primitive.types.ts   # TypeScript type definitions
+└── index.ts                      # Barrel export
+```
+
+**File Contents:**
 
 ```tsx
-// select.primitive.tsx
-import { forwardRef } from "react";
-import type { SelectPrimitiveProps } from "./select.primitive.types";
+// checkbox.primitive.tsx
+import React from "react";
 
-export const SelectPrimitive = forwardRef<
-  HTMLSelectElement,
-  SelectPrimitiveProps
->(({ children, ...props }, ref) => {
+import type { CheckboxPrimitiveProps } from "./checkbox.primitive.types";
+
+/**
+ * Headless primitive for Checkbox.
+ */
+export const CheckboxPrimitive = React.forwardRef<
+  HTMLDivElement,
+  CheckboxPrimitiveProps
+>(({ children, ...rest }, ref) => {
   return (
-    <select
+    <div
       ref={ref}
-      {...props}
+      {...rest}
     >
       {children}
-    </select>
+    </div>
   );
 });
 
-SelectPrimitive.displayName = "SelectPrimitive";
+CheckboxPrimitive.displayName = "CheckboxPrimitive";
 ```
 
-## Development
+```ts
+// checkbox.primitive.types.ts
+import React from "react";
+
+/**
+ * Props for CheckboxPrimitive component.
+ * Extends all standard HTML div attributes.
+ * Add primitive-specific props below as needed.
+ */
+export type CheckboxPrimitiveProps = React.HTMLAttributes<HTMLDivElement> & {
+  // Add primitive-specific props here
+  // Example:
+  // disabled?: boolean;
+};
+```
+
+## 🏗️ Architecture
+
+The CLI follows a modular, maintainable architecture:
+
+```
+@yuva-devlab/cli/
+├── src/
+│   ├── commands/
+│   │   └── create-component.ts    # Component creation logic
+│   ├── templates/
+│   │   ├── index.template.ts      # Barrel export templates
+│   │   ├── primitive.template.ts  # Primitive templates
+│   │   └── styled.template.ts     # Styled component templates
+│   ├── utils/
+│   │   ├── fs.ts                  # File system utilities
+│   │   ├── helpers/               # Scaffolding helpers
+│   │   └── strings.ts             # String transformations
+│   └── index.ts                   # CLI entry point
+├── vite.config.ts                 # ESM build configuration
+└── package.json
+```
+
+## 🔧 Development
 
 ### Building the CLI
 
@@ -200,40 +302,55 @@ pnpm --filter @yuva-devlab/cli build
 ### Testing Locally
 
 ```bash
-# Link globally
-pnpm --filter @yuva-devlab/cli link --global
+# Build the CLI
+pnpm --filter @yuva-devlab/cli build
 
-# Use the CLI
-yuva create component test
+# Reinstall to update binary symlinks
+pnpm install
+
+# Test the CLI
+pnpm exec yuva create component test-component
 ```
 
-## Architecture
+### Linking Globally
 
-The CLI follows a simple, maintainable architecture:
+```bash
+cd packages/cli
+pnpm link --global
 
-```
-@yuva-devlab/cli
-├── src/
-│   ├── commands/          # Command implementations
-│   ├── templates/         # File templates
-│   ├── utils/             # Helper functions
-│   └── index.ts           # CLI entry point
-└── package.json
+# Now use from anywhere
+yuva create component button
 ```
 
-## Roadmap
+## 📝 Naming Conventions
 
-- [ ] Interactive mode with prompts
+The CLI automatically handles name transformations:
+
+| Input            | Component Name  | File Name            |
+| ---------------- | --------------- | -------------------- |
+| `button`         | `Button`        | `button.tsx`         |
+| `card-header`    | `CardHeader`    | `card-header.tsx`    |
+| `SelectMenu`     | `SelectMenu`    | `select-menu.tsx`    |
+| `complex_widget` | `ComplexWidget` | `complex-widget.tsx` |
+
+## 🗺️ Roadmap
+
+- [x] Component scaffolding
+- [x] Primitive scaffolding
+- [x] ESM build support
+- [x] Type-safe templates
+- [ ] Interactive prompts mode
 - [ ] Custom template support
-- [ ] Component variant generation
 - [ ] Storybook story generation
-- [ ] Test file customization
+- [ ] Component migration tools
+- [ ] Dependency graph visualization
 
-## Related Packages
+## 🔗 Related Packages
 
-- [@yuva-devlab/ui](../ui) - Component library
+- [@yuva-devlab/ui](../ui) - Styled component library
 - [@yuva-devlab/primitives](../primitives) - Headless primitives
+- [@yuva-devlab/tokens](../tokens) - Design tokens
 
-## License
+## 📄 License
 
 MIT © Yuva Devlab

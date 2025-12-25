@@ -16,7 +16,7 @@ export const scaffoldStyledComponent = (
 
   const componentFile = path.join(componentDir, `${kebab}.tsx`);
   const typesFile = path.join(componentDir, `${kebab}.types.ts`);
-  const stylesFile = path.join(componentDir, `${kebab}.styles.ts`);
+  const stylesFile = path.join(componentDir, `${kebab}.styles.css.ts`);
   const testFile = path.join(componentDir, `${kebab}.test.tsx`);
   const indexFile = path.join(componentDir, "index.ts");
 

@@ -1,13 +1,10 @@
-import { indexTemplate } from "./index.template";
+import { primitiveIndexTemplate } from "./index.template";
 
 const primitiveComponentTemplate = (pascal: string): string => {
   return `
 import React from "react";
 
-export interface ${pascal}PrimitiveProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  // add primitive-specific props here
-}
+import type { ${pascal}PrimitiveProps } from "./${pascal.toLowerCase()}.primitive.types";
 
 /**
  * Headless primitive for ${pascal}.
@@ -27,9 +24,24 @@ ${pascal}Primitive.displayName = "${pascal}Primitive";
 `;
 };
 
-export const primitiveTemplates = (pascal: string): Record<string, string> => {
+const primitiveTypeTemplate = (pascal: string): string => {
+  return `
+import React from "react";
+
+export interface ${pascal}PrimitiveProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  // add primitive-specific props here
+}
+`;
+};
+
+export const primitiveTemplates = (
+  pascal: string,
+  kebab: string,
+): Record<string, string> => {
   return {
     component: primitiveComponentTemplate(pascal),
-    index: indexTemplate(pascal),
+    type: primitiveTypeTemplate(pascal),
+    index: primitiveIndexTemplate(kebab),
   };
 };

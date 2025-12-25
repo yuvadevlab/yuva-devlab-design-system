@@ -11,15 +11,20 @@ export const scaffoldPrimitive = (
   pascal: string,
 ): void => {
   const primitiveDir = path.join(uiRoot, kebab);
-  const templates = primitiveTemplates(pascal);
+  const templates = primitiveTemplates(pascal, kebab);
   ensureDirExists(primitiveDir);
 
   const primitiveFile = path.join(primitiveDir, `${kebab}.primitive.tsx`);
-  const indexFile = path.join(primitiveDir, "index.ts");
+  const primitiveTypeFile = path.join(
+    primitiveDir,
+    `${kebab}.primitive.types.ts`,
+  );
+  const primitiveIndexFile = path.join(primitiveDir, "index.ts");
 
   writeFileIfNotExists(primitiveFile, templates.component);
+  writeFileIfNotExists(primitiveTypeFile, templates.type);
 
-  writeFileIfNotExists(indexFile, templates.index);
+  writeFileIfNotExists(primitiveIndexFile, templates.index);
 
   // eslint-disable-next-line no-console
   console.log(

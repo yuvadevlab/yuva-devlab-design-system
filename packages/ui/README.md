@@ -23,13 +23,27 @@
 ## Installation
 
 ```bash
+# npm
 npm install @yuva-devlab/ui
+
+# yarn
+yarn add @yuva-devlab/ui
+
+# pnpm
+pnpm add @yuva-devlab/ui
 ```
 
 ### Peer Dependencies
 
 ```bash
+# npm
 npm install react@^19.2.0 react-dom@^19.2.0
+
+# yarn
+yarn add react@^19.2.0 react-dom@^19.2.0
+
+# pnpm
+pnpm add react@^19.2.0 react-dom@^19.2.0
 ```
 
 ## Quick Start
