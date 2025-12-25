@@ -1,5 +1,16 @@
 # @yuva-devlab/primitives
 
+## 0.2.0
+
+### Minor Changes
+
+- 61f9888: Standardize form inputs & add semantic layout components.
+  - Added new Divider component.
+  - Added semantic layout components: Header, Footer, Main, Section, Nav, Aside,
+    Article.
+  - Standardized transitions and focus styles for Select, Checkbox, Radio,
+    Switch, Input.
+
 ## 0.1.2
 
 ### Patch Changes
