@@ -9,6 +9,10 @@ program
   .description("Yuva Devlab CLI – tooling for @yuva-devlab/ui")
   .version("0.0.0");
 
-registerCreateComponentCommand(program);
+const createCommand = program
+  .command("create")
+  .description("Create new components and primitives");
+
+registerCreateComponentCommand(createCommand);
 
 program.parse(process.argv);

@@ -6,8 +6,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
-      formats: ["cjs"],
-      fileName: () => "index.cjs",
+      formats: ["es"],
+      fileName: () => "index.js",
     },
     target: "node18",
     outDir: "dist",
@@ -22,7 +22,7 @@ export default defineConfig({
       ],
       output: {
         banner: "#!/usr/bin/env node",
-        format: "cjs",
+        format: "es",
         exports: "auto",
       },
       treeshake: true,
