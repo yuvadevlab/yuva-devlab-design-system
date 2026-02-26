@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   changesets:
-    name: "🏷️ Changesets"
+    name: "Validates if a changeset is required for the pull request"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6

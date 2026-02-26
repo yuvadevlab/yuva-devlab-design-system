@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   test:
-    name: "🧪 Test"
+    name: "Executes the Vitest test suite"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6

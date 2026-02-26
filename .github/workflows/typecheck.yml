@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   typecheck:
-    name: "🛡️ Type Check"
+    name: "Performs static TypeScript analysis on all packages"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
