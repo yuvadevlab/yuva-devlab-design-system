@@ -1,5 +1,17 @@
 # @yuva-devlab/ui
 
+## 0.3.0
+
+### Minor Changes
+
+- cb8e920: If adding the "use client"; banner is a new feature that enables
+  compatibility with Next.js/RSC.
+
+### Patch Changes
+
+- Updated dependencies [cb8e920]
+  - @yuva-devlab/primitives@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes
