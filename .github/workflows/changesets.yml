@@ -1,0 +1,30 @@
+name: "🏷️ Changesets"
+
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  changesets:
+    name: "🏷️ Changesets"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        if: "!startsWith(github.head_ref, 'changeset-release/')"
+        with:
+          fetch-depth: 0
+
+      - uses: ./.github/actions/setup-node-env
+        if: "!startsWith(github.head_ref, 'changeset-release/')"
+
+      - name: Fetch Base
+        if: "!startsWith(github.head_ref, 'changeset-release/')"
+        run: git fetch origin main:main
+
+      - name: Validate
+        if: "!startsWith(github.head_ref, 'changeset-release/')"
+        run: pnpm changeset status
