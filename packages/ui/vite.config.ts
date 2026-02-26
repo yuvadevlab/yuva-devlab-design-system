@@ -39,6 +39,7 @@ export default defineConfig({
         "clsx",
       ],
       output: {
+        banner: '"use client";',
         preserveModules: false,
         exports: "named",
         globals: {

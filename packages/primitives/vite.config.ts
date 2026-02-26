@@ -22,6 +22,7 @@ export default defineConfig({
     rollupOptions: {
       external: ["react"],
       output: {
+        banner: '"use client";',
         preserveModules: false,
         exports: "named",
       },
