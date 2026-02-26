@@ -25,7 +25,7 @@ jobs:
       - uses: ./.github/actions/setup-node-env
 
       - name: Run Tests with Coverage
-        run: pnpm run test --coverage
+        run: pnpm run test
 
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
