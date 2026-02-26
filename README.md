@@ -140,7 +140,7 @@ Each package is versioned independently. For example:
 - **Integrity Check**: TypeScript type safety
 - **Test Suite**: Unit tests (where available)
 - **Build Artifacts**: Production compilation
-- **Changeset Validator**: Ensures changesets exist for PRs (except release branches)
+- **Changeset Validator**: Ensures changesets exist for PRs (except release branche)
 
 ---
 
