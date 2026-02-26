@@ -1,0 +1,25 @@
+name: "🛡️ Type Check"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  typecheck:
+    name: "Performs static TypeScript analysis on all packages"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-node-env
+
+      - name: Build Packages
+        run: pnpm --filter "!playground" --filter "!docs" build
+
+      - name: Run Type Check
+        run: pnpm run type-check

@@ -1,11 +1,11 @@
-# 🧩 yuva-devlab-workspace
+# 🧩 yuva-devlab-design-system
 
 [![npm version](https://img.shields.io/npm/v/@yuva-devlab/ui.svg)](https://www.npmjs.com/package/@yuva-devlab/ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-A fully–modular, scalable monorepo powering the **Yuva Devlab UI Library** — including tokens, primitives, styled components, theming, CLI tools, docs, and sandbox apps.
+A fully–modular, scalable monorepo powering the **Yuva Devlab Design System** — including tokens, primitives, styled components, theming, CLI tools, docs, and sandbox apps.
 
-This workspace is built with:
+This design system is built with:
 
 - **pnpm workspaces** (Package management)
 - **Turborepo** (Task orchestration & caching)
@@ -33,7 +33,7 @@ This workspace is built with:
 ## �📁 Project Structure
 
 ```bash
-yuva-devlab-workspace/
+yuva-devlab-design-system/
 ├── .husky/             # Git hooks configuration
 ├── .vscode/            # Shared editor settings
 ├── apps/               # Consumer applications

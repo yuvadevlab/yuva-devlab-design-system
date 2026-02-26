@@ -24,17 +24,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: "pnpm"
-
-      - name: Install
-        run: pnpm install
+      - uses: ./.github/actions/setup-node-env
 
       - name: Build Configs
         run: pnpm --filter "@yuva-devlab/*-config" build
