@@ -1,0 +1,30 @@
+name: "⚠️ Enforce Main Branch Protection"
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+
+jobs:
+  enforce-dev-to-main:
+    name: "Checks if the PR source branch is valid"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify Head Branch
+        run: |
+          HEAD_BRANCH="${{ github.head_ref }}"
+
+          # We only allow EXACTLY "dev" or branches starting with "changeset-release/"
+          if [[ "$HEAD_BRANCH" == "dev" ]]; then
+            echo "✅ PR comes from 'dev'."
+            exit 0
+          elif [[ "$HEAD_BRANCH" == changeset-release/* ]]; then
+            echo "✅ PR comes from an automated changeset branch."
+            exit 0
+          else
+            echo "❌ ERROR: Pull requests to 'main' must originate from either 'dev' or a 'changeset-release/' branch."
+            echo "You are trying to merge from '$HEAD_BRANCH'."
+            echo "Please target your feature PRs to the 'dev' branch instead."
+            exit 1
+          fi
