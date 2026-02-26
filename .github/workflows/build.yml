@@ -3,8 +3,14 @@ name: "📦 Build"
 on:
   push:
     branches: [main, dev]
+    paths-ignore:
+      - "**/*.md"
+      - ".vscode/**"
   pull_request:
     branches: [main, dev]
+    paths-ignore:
+      - "**/*.md"
+      - ".vscode/**"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
